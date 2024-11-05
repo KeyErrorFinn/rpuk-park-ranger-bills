@@ -1,0 +1,13 @@
+1) If you dont have any of the neccessary text files, just open the exe file and the neccessary files should appear
+
+2) Copy and Paste Ranger logs into 1.billInput.txt
+
+3) Run 2.billCounter.exe
+
+4) Copy contents of 3.billOutput.txt into the bills spreadsheet
+
+5) Copy Name, Amount To Pay, Days Active, and Phone Number columns from the spreadsheet to 4.messageInput.txt
+
+6) Run 5.messageCreator.exe
+
+7) Send messages from 6.messageOutput.txt to people

@@ -1,0 +1,7 @@
+Hello [FIRSTNAME],
+
+Your bill with the Park Rangers this week is: [AMOUNT]
+Please make contact via a dispatch to us to settle this.
+
+Regards,
+SA Royal Park Rangers
