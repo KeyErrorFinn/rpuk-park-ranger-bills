@@ -1,20 +1,28 @@
+import os
+cwd = os.path.dirname(__file__) + "\\"
+billInputFile = cwd+"1.billInput.txt"
+messageInputFile = cwd+"4.messageInput.txt"
+messageOutputFile = cwd+"6.messageOutput.txt"
+sampleMessageFile = cwd+"!sampleMessage.txt"
+instructionsFile = cwd+"!!instructions.txt"
+
 # Creates 1.billInput.txt file if it does not exist
 try:
-    checkFile = open("1.billInput.txt", "r")
+    checkFile = open(billInputFile, "r")
 except FileNotFoundError:
-    open("1.billInput.txt", "w")
+    open(billInputFile, "w")
 
 # Creates 4.messageInput.txt file if it does not exist
 try:
-    checkFile = open("4.messageInput.txt", "r")
+    checkFile = open(messageInputFile, "r")
 except FileNotFoundError:
-    open("4.messageInput.txt", "w")
+    open(messageInputFile, "w")
 
 # Creates !sampleMessage.txt file if it does not exist
 try:
-    checkFile = open("!sampleMessage.txt", "r")
+    checkFile = open(sampleMessageFile, "r")
 except FileNotFoundError:
-    with open("!sampleMessage.txt", "w") as f:
+    with open(sampleMessageFile, "w") as f:
         ogSampleMessage = '''Hello [FIRSTNAME],
 
 Your bill with the Park Rangers this week is: [AMOUNT]
@@ -29,9 +37,9 @@ SA Royal Park Rangers'''
 
 # Creates !!instructions.txt file if it does not exist
 try:
-    checkFile = open("!!instructions.txt", "r")
+    checkFile = open(instructionsFile, "r")
 except FileNotFoundError:
-    with open("!!instructions.txt", "w") as f:
+    with open(instructionsFile, "w") as f:
         instructionsMessage = '''1) If you dont have any of the neccessary text files, just open the exe file and the neccessary files should appear
 
 2) Copy and Paste Ranger logs into 1.billInput.txt
@@ -53,7 +61,7 @@ except FileNotFoundError:
 
 # Turns 4.messageInput.txt file into a list
 peopleInfoList = []
-with open("4.messageInput.txt", "r", encoding='utf-8') as f:
+with open(messageInputFile, "r", encoding='utf-8') as f:
 
     # Gets each line in file
     for line in f:
@@ -68,10 +76,10 @@ with open("4.messageInput.txt", "r", encoding='utf-8') as f:
         peopleInfoList.append(datalist)
 
 # Outputs player messages to file
-with open("6.messageOutput.txt", "w", encoding='utf-8') as f:
+with open(messageOutputFile, "w", encoding='utf-8') as f:
 
     # Reads sample message from sampleMessage.txt file
-    with open("!sampleMessage.txt", "r") as f2:
+    with open(sampleMessageFile, "r") as f2:
         sampleMessage = f2.readlines()
 
     # Gets each persons info in the list

@@ -1,20 +1,28 @@
+import os
+cwd = os.path.dirname(__file__) + "\\"
+billInputFile = cwd+"1.billInput.txt"
+billOutputFile = cwd+"3.billOutput.txt"
+messageInputFile = cwd+"4.messageInput.txt"
+sampleMessageFile = cwd+"!sampleMessage.txt"
+instructionsFile = cwd+"!!instructions.txt"
+
 # Creates 1.billInput.txt file if it does not exist
 try:
-    checkFile = open("1.billInput.txt", "r")
+    checkFile = open(billInputFile, "r")
 except FileNotFoundError:
-    open("1.billInput.txt", "w")
+    open(billInputFile, "w")
 
 # Creates 4.messageInput.txt file if it does not exist
 try:
-    checkFile = open("4.messageInput.txt", "r")
+    checkFile = open(messageInputFile, "r")
 except FileNotFoundError:
-    open("4.messageInput.txt", "w")
+    open(messageInputFile, "w")
 
 # Creates !sampleMessage.txt file if it does not exist
 try:
-    checkFile = open("!sampleMessage.txt", "r")
+    checkFile = open(sampleMessageFile, "r")
 except FileNotFoundError:
-    with open("!sampleMessage.txt", "w") as f:
+    with open(sampleMessageFile, "w") as f:
         ogSampleMessage = '''Hello [FIRSTNAME],
 
 Your bill with the Park Rangers this week is: [AMOUNT]
@@ -29,9 +37,9 @@ SA Royal Park Rangers'''
 
 # Creates !!instructions.txt file if it does not exist
 try:
-    checkFile = open("!!instructions.txt", "r")
+    checkFile = open(instructionsFile, "r")
 except FileNotFoundError:
-    with open("!!instructions.txt", "w") as f:
+    with open(instructionsFile, "w") as f:
         instructionsMessage = '''1) If you dont have any of the neccessary text files, just open the exe file and the neccessary files should appear
 
 2) Copy and Paste Ranger logs into 1.billInput.txt
@@ -53,7 +61,7 @@ except FileNotFoundError:
 
 # Turns 1.billInput.txt file into a list
 billList = []
-with open("1.billInput.txt", "r") as f:
+with open(billInputFile, "r") as f:
 
     # Gets each line in file
     for line in f:
@@ -67,7 +75,7 @@ with open("1.billInput.txt", "r") as f:
         name = datalist[0]
         amount = datalist[1]
         item = datalist[2]
-        
+
         # Removes all ranks from names
         for rank in ["Hunter", "Trainee Ranger", "Park Ranger", "Senior Ranger", "Deputy Ranger", "Head Ranger"]:
             if rank in name:
@@ -99,9 +107,10 @@ for log in billList:
 
     # Gets each column
     name = log[0]
-    amount = int(log[1])
+    amount = log[1]
     item = log[2]
     itemCount = log[3]
+
 
 
     # Creates bill log for each person
@@ -109,7 +118,7 @@ for log in billList:
         seperateBills[name] = {"Bill": 0}
 
     # Adds or subtracts bill to person
-    seperateBills[name]["Bill"] += int(amount)
+    seperateBills[name]["Bill"] += amount
 
     # Adds item they taken to person's bill log
     if item not in seperateBills[name]:
@@ -125,14 +134,12 @@ for log in billList:
     if seperateBills[name][item] == 0:
         del seperateBills[name][item]
 
-
 # Deletes bill log for person if their bill is 0 or less
 tempSeperateBills = {}
 for person in seperateBills:
     if seperateBills[person]["Bill"] > 0:
         tempSeperateBills[person] = seperateBills[person]
 seperateBills = tempSeperateBills
-
 
 # Sorts seperate bills alphebetically
 sortedSeperateBills = dict(sorted(seperateBills.items()))
@@ -141,6 +148,6 @@ sortedSeperateBills = dict(sorted(seperateBills.items()))
 #     print(person + " - " + str(sortedSeperateBills[person]))
 
 # Outputs seperate bills to file
-with open("3.billOutput.txt", "w") as f:
+with open(billOutputFile, "w") as f:
     for person in sortedSeperateBills:
         f.write(person + "\t" + str(sortedSeperateBills[person]["Bill"]) + "\n")
