@@ -1,0 +1,207 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+* {
+    font-family: "Noto Sans";
+    color: white;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url(../images/background.png);
+    background-size: cover;
+    padding: 40px;
+    height: calc(100% - (40px * 2));
+    margin: 0;
+}
+
+.box-container {
+    display: flex;
+    height: 100%;
+    gap: 30px;
+}
+
+    .action-btn, .reset-btn {
+        font-size: 20px;
+        font-weight: 600;
+        width: fit-content;
+        padding: 4px 23px 7px;
+        border-radius: 7px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+        .action-btn:hover, .reset-btn:hover {
+            scale: 1.03;
+        }
+
+    .action-btn {
+        background: linear-gradient(100deg, #E6E600 -10%, #B95C00);
+    }
+
+    .reset-btn {
+        background-color: #5D5D5D;
+    }
+
+    .two-small-box-container {
+        display: flex;
+        flex-direction: column;
+        /* width: 200px; */
+        gap: 40px;
+        width: fit-content;
+    }
+
+        .small-box-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #063102;
+            padding: 10px 15px;
+            border-radius: 12px;
+            width: 330px;
+            box-shadow: black 3px 3px 4px 0px;
+        }
+
+            .small-box-header {
+                font-weight: 600;
+                font-size: 22px;
+            }
+
+            .small-box-container textarea {
+                flex: 1;
+                color: #DDDDDD;
+                font-size: 16px;
+                background-color: #0B4B03;
+                border-color: #0F7104;
+                border-radius: 10px;
+                padding: 3px 6px;
+                resize: none;
+            }
+
+                .small-box-container textarea::placeholder {
+                    color: #0F7104;
+                }
+
+                .small-box-container textarea:focus {
+                    border-color: #1cd508 !important;
+                    outline: 0;
+                    box-shadow: 0 0 0 .25rem rgba(13, 253, 49, 0.25);
+                }
+
+                .small-box-container .readonly:focus {
+                    border-color: #0F7104 !important;
+                    box-shadow: none ;
+                }
+    
+    .big-box-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #063102;
+        border-radius: 12px;
+        padding: 10px 15px;
+        gap: 10px;
+        box-shadow: black 3px 3px 4px 0px;
+    }
+
+        .big-box-header {
+            font-weight: 600;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: -7px;
+        }
+
+        .big-box-header-divider {
+            background-color: white;
+            height: 1px;
+            width: 110px;
+            align-self: center;
+        }
+
+        .list-of-bills {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+            .bill-tab {
+                display: flex;
+                flex-direction: column;
+                font-weight: 600;
+                background: linear-gradient(100deg, #00D9A3, #008C8C);
+                border-radius: 7px;
+                padding: 3px 10px;
+                overflow: hidden;
+            }
+
+                .bill-tab-header {
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    user-select: none;
+                }
+
+                    .name-and-bill {
+                        font-size: 16px;
+                        flex: 1
+                    }
+
+                    .bill-buttons {
+                        display: flex;
+                    }
+
+                        .small-action-btn {
+                            background: linear-gradient(100deg, #E6E600 -10%, #B95C00);
+                            font-size: 16px;
+                            font-weight: 600;
+                            width: fit-content;
+                            height: fit-content;
+                            padding: 2px 13px 4px;
+                            border-radius: 7px;
+                            cursor: pointer;
+                            user-select: none;
+                            margin-right: 12px;
+                        }
+
+                    .bill-tab-arrow {
+                        display: flex;
+                        color: rgb(212, 212, 212);
+                        font-size: 27px;
+                        font-weight: 700;
+                        height: 0px;
+                        margin-bottom: 2px;
+                        align-items: center;
+                        transition: all 0.5s ease-in-out;
+                    }
+
+                    .bill-tab.open .bill-tab-arrow {
+                        rotate: 90deg;
+                        margin-bottom: 0px;
+                    }
+
+                .bill-tab-information {
+                    max-height: 0px;
+                    transition: all 0.5s ease-in-out;
+                }
+
+                    .bill-tab.open .bill-tab-information {
+                        max-height: 200px;
+                    }
+
+                    .bill-information-divider {
+                        background-color: white;
+                        height: 1px;
+                        margin-top: 5px;
+                    }
+
+                    .bill-information-item {
+                        font-size: 14px;
+                        margin-top: 5px;
+                    }
+
+                        .bill-information-item:last-of-type {
+                            margin-bottom: 5px;
+                        }

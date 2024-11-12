@@ -4,11 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPUK Rangers Bills Solver</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer="defer"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer="defer"></script>
+    <script src="js/billProcessor.js" defer="defer"></script>
+    <script src="js/messageCreator.js" defer="defer"></script>
 </head>
 <body>
-    <h1>Bill Processor</h1>
+    <div class="box-container">
+        <div class="two-small-box-container">
+            <div class="small-box-container">
+                <div class="small-box-header">Log Text Input</div>
+                <textarea class="small-box-text-input" id="logTextInput" placeholder="Log Text ..."></textarea>
+                <div class="action-btn" onclick="processBill()">Generate</div>
+            </div>
+            <div class="small-box-container">
+                <div class="small-box-header">Output For Sheet</div>
+                <textarea class="readonly" id="outputForSheet" placeholder="Generate for Output ..." readonly></textarea>
+                <div class="action-btn">Copy</div>
+            </div>
+        </div>
+        <div class="big-box-container">
+            <div class="big-box-header">Bill List</div>
+            <div class="big-box-header-divider"></div>
+            <div class="list-of-bills">
+                <div class="bill-tab">
+                    <div class="bill-tab-header">
+                        <div class="name-and-bill">Lenny Voursanvagen - £3,200</div>
+                        <div class="bill-buttons">
+                            <div class="small-action-btn">383-0348</div>
+                            <div class="small-action-btn">Message</div>
+                        </div>
+                        <div class="bill-tab-arrow">></div>
+                    </div>
+                </div>
+                <div class="bill-tab open" onclick="toggleInformation(this)">
+                    <div class="bill-tab-header">
+                        <div class="name-and-bill">Ethan Walker - £325,200</div>
+                        <div class="bill-buttons">
+                            <div class="small-action-btn">623-8457</div>
+                            <div class="small-action-btn">Message</div>
+                        </div>
+                        <div class="bill-tab-arrow">></div>
+                    </div>
+                    <div class="bill-tab-information">
+                        <div class="bill-information-divider"></div>
+                        <div class="bill-information-item">Bandages | 310</div>
+                        <div class="bill-information-divider"></div>
+                        <div class="bill-information-item">Binoculars | 5</div>
+                        <div class="bill-information-divider"></div>
+                        <div class="bill-information-item">Hunting Knifes | 23</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="two-small-box-container">
+            <div class="small-box-container">
+                <div class="small-box-header">Sheet Input</div>
+                <textarea class="small-box-text-input" id="sheetInput" placeholder="Sheet Name, Bill, Days active, Phone Number ..."></textarea>
+                <div class="action-btn">Generate</div>
+            </div>
+            <div class="small-box-container">
+                <div class="small-box-header">Sample Message</div>
+                <textarea id="sampleMessage" placeholder="Create Sample Message ...">
+Hello [FIRSTNAME],
+
+Your bill with the Park Rangers this week is: [AMOUNT]
+Please make contact via a dispatch to us to settle this.
+
+Regards,
+SA Royal Park Rangers
+                </textarea>
+                <div class="reset-btn">Reset</div>
+            </div>
+        </div>
+    </div>
+    <!-- <h1>Bill Processor</h1>
     
     <label for="inputBox">Enter bill data:</label>
     <textarea id="inputBox" rows="10" cols="50" placeholder="Paste bill data here..."></textarea><br><br>
@@ -16,6 +86,6 @@
     <button onclick="processBill()">Generate Bill</button>
     
     <h2>Output:</h2>
-    <textarea id="outputBox" rows="10" cols="50" readonly></textarea>
+    <textarea id="outputBox" rows="10" cols="50" readonly></textarea> -->
 </body>
 </html>
