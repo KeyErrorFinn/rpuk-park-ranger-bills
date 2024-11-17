@@ -121,10 +121,28 @@ body {
             align-self: center;
         }
 
-        .list-of-bills {
+        #listOfBills {
+            flex: 1;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            overflow-y: auto;
+        }
+
+        .custom-scroll-bar::-webkit-scrollbar {
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .custom-scroll-bar::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #b9b900 -10%, #844200);
+            border-radius: 20px;
+            cursor:auto;
+        }
+
+        .custom-scroll-bar::-webkit-scrollbar-thumb:active {
+            background: linear-gradient(to bottom, #E6E600 -10%, #B95C00);
+
         }
 
             .bill-tab {
@@ -135,6 +153,7 @@ body {
                 border-radius: 7px;
                 padding: 3px 10px;
                 overflow: hidden;
+                flex-shrink: 0;
             }
 
                 .bill-tab-header {

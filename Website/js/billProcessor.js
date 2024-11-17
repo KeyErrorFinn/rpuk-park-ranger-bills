@@ -1,4 +1,4 @@
-function processBill() {
+function processBill(e) {
     const billList = [];
     const ranks = ["Hunter", "Trainee Ranger", "Park Ranger", "Senior Ranger", "Deputy Ranger", "Head Ranger"];
     
@@ -7,10 +7,10 @@ function processBill() {
     const lines = logTextInputText.split("\n");
 
     if (logTextInputText == "") {
-        outputForSheet.placeholder = "NO TEXT INPUTTED TO LOG TEXT INPUT"
+        outputForSheet.placeholder = "NO TEXT INPUTTED TO LOG TEXT INPUT";
+        return
     }
     
-    // console.log(lines);
     lines.forEach(line => {
         if (line.includes("Reason") && line.includes("Quantity")) return;
         
@@ -48,23 +48,23 @@ function processBill() {
         const [name, amount, item, itemCount] = log;
 
         if (!seperateBills[name]) {
-            seperateBills[name] = { "Bill": 0 };
+            seperateBills[name] = { "Bill": 0, "Items": {}};
         }
         
         seperateBills[name]["Bill"] += amount;
 
-        if (!seperateBills[name][item]) {
-            seperateBills[name][item] = 0;
+        if (!seperateBills[name]["Items"][item]) {
+            seperateBills[name]["Items"][item] = 0;
         }
 
         if (amount >= 0) {
-            seperateBills[name][item] += itemCount;
+            seperateBills[name]["Items"][item] += itemCount;
         } else if (amount < 0) {
-            seperateBills[name][item] -= itemCount;
+            seperateBills[name]["Items"][item] -= itemCount;
         }
 
-        if (seperateBills[name][item] === 0) {
-            delete seperateBills[name][item];
+        if (seperateBills[name]["Items"][item] === 0) {
+            delete seperateBills[name]["Items"][item];
         }
     });
 
@@ -92,4 +92,52 @@ function processBill() {
     outputText = outputText.slice(0, -1);
 
     outputForSheet.value = outputText;
+
+
+    const listOfBills = document.getElementById("listOfBills");
+
+    let listOfBillsInnerHTML = ""
+
+    for (const person in sortedSeperateBills) {
+        const personBill = sortedSeperateBills[person]["Bill"];
+        const personItems = sortedSeperateBills[person]["Items"];
+        const formattedPersonBill = new Intl.NumberFormat('en-GB', {
+                                style: 'currency',
+                                currency: 'GBP',
+                                minimumFractionDigits: 0, // Removes decimals
+                            }).format(personBill);
+        listOfBillsInnerHTML += `<div class="bill-tab" name-and-bill="${person} - ${formattedPersonBill}">`;
+        listOfBillsInnerHTML += '<div class="bill-tab-header" onclick="toggleInformation(this)">'; // Header START
+        listOfBillsInnerHTML += `<div class="name-and-bill">${person} - ${formattedPersonBill}</div>`;
+        listOfBillsInnerHTML += '<div class="bill-buttons"></div>';
+        listOfBillsInnerHTML += '<div class="bill-tab-arrow">></div>';
+        listOfBillsInnerHTML += '</div>'; // Header END
+        listOfBillsInnerHTML += '<div class="bill-tab-information">'; // Information START
+        for (const itemName in personItems) {
+            const itemAmount = personItems[itemName];
+            listOfBillsInnerHTML += '<div class="bill-information-divider"></div>';
+            listOfBillsInnerHTML += `<div class="bill-information-item">${itemName} | ${itemAmount}</div>`;
+        }
+        listOfBillsInnerHTML += '</div></div>'; // Information & Tab END
+
+    };
+
+    listOfBills.innerHTML = listOfBillsInnerHTML;
+
+    if (listOfBills.scrollHeight > listOfBills.clientHeight) {
+        listOfBills.style.paddingRight = "10px";
+    } else {
+        if (listOfBills.style.paddingLeft === "10px") {
+            listOfBills.style.paddingLeft = "0";
+        }
+    }
+
+    if (e.textContent !== "Generated") {
+        e.textContent = "Generated";
+        e.style.background = buttonActivatedColour
+        setTimeout(() => {
+            e.textContent = "Generate";
+            e.style.background = buttonNormalColour
+        }, 2500);
+    }
 }
