@@ -17,6 +17,22 @@ body {
     margin: 0;
 }
 
+.custom-scroll-bar::-webkit-scrollbar {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #b9b900 -10%, #844200);
+    border-radius: 20px;
+    cursor:auto;
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(to bottom, #E6E600 -10%, #B95C00);
+
+}  
+
 .box-container {
     display: flex;
     height: 100%;
@@ -128,22 +144,15 @@ body {
             gap: 10px;
             overflow-y: auto;
         }
-
-        .custom-scroll-bar::-webkit-scrollbar {
-            background-color: transparent;
-            cursor: pointer;
-        }
-
-        .custom-scroll-bar::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #b9b900 -10%, #844200);
-            border-radius: 20px;
-            cursor:auto;
-        }
-
-        .custom-scroll-bar::-webkit-scrollbar-thumb:active {
-            background: linear-gradient(to bottom, #E6E600 -10%, #B95C00);
-
-        }
+        
+            .no-bills {
+                color: rgb(205, 205, 205);
+                text-align: center;
+                font-weight: 600;
+                background: linear-gradient(100deg, #008564, #003f3f);
+                border-radius: 7px;
+                padding: 10px;
+            }
 
             .bill-tab {
                 display: flex;
