@@ -31,8 +31,8 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
 ### The helper works by doing this:
 1) A High rank uses the in-game computer to look at the bills log
 2) They select all of the text in the bills log and either:
-  1) Puts each page into a text file and then copy the entire text file
-  2) Puts each page into the input of either section one-by-one
+    1) Puts each page into a text file and then copy the entire text file
+    2) Puts each page into the input of either section one-by-one
 3) The helper generates the total bill for each person, and can even work out what items and amounts caused the bill 
 4) The High rank then puts the generated output and pastes it into the high-rank google spreadsheet
 5) By pasted the generated output of the name and bill, the sheet also gets days active and contact number
