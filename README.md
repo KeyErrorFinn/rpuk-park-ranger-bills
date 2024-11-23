@@ -1,13 +1,19 @@
-# RPUK Park Ranger Bills Helper
+<h1 align="center">
+  RPUK Park Ranger Bills Helper
+</h1>
 
-[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/KeyErrorFinn/rpuk-park-ranger-bills?include_prereleases)](https://img.shields.io/github/v/release/KeyErrorFinn/rpuk-park-ranger-bills?include_prereleases)
-[![GitHub last commit](https://img.shields.io/github/last-commit/KeyErrorFinn/rpuk-park-ranger-bills)](https://img.shields.io/github/last-commit/KeyErrorFinn/rpuk-park-ranger-bills)
-[![GitHub issues](https://img.shields.io/github/issues-raw/KeyErrorFinn/rpuk-park-ranger-bills)](https://img.shields.io/github/issues-raw/KeyErrorFinn/rpuk-park-ranger-bills)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-121013?logo=github&logoColor=white)](#)
-[![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)](#)
-[![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff)](#)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](#)
-[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#)
+<p align="center">
+  <a href="github.com/KeyErrorFinn/rpuk-park-ranger-bills/releases/latest"><img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/KeyErrorFinn/rpuk-park-ranger-bills?include_prereleases" /></a>
+  <a href="https://github.com/KeyErrorFinn/rpuk-park-ranger-bills/commits/main/"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/KeyErrorFinn/rpuk-park-ranger-bills" /></a>
+  <a href="https://github.com/KeyErrorFinn/rpuk-park-ranger-bills/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/KeyErrorFinn/rpuk-park-ranger-bills" /></a>
+</p>
+<p align="center">
+  <a href="#"><img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-121013?logo=github&logoColor=white" /></a>
+  <a href="#"><img alt="HTML" src="https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white" /></a>
+  <a href="#"><img alt="CSS" src="https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff" /></a>
+  <a href="#"><img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000" /></a>
+  <a href="#"><img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff" /></a>
+</p>
 
 
 This project is for helping the **RPUK SA Park Rangers** with their bills system to help efficiently work out the bills and save time.
