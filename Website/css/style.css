@@ -292,13 +292,13 @@ body {
                         margin-top: 5px;
                     }
 
-                        .bill-information-item.taken-item > * {
+                        .bill-information-item.given-item > * {
                             font-size: 12px;
                             color: rgb(60, 165, 51);
                             text-shadow: 0 0 2px #18381a8c;
                         }
 
-                        .bill-information-item.given-item > * {
+                        .bill-information-item.taken-item > * {
                             font-size: 12px;
                             color: rgb(201, 51, 51);
                             text-shadow: 0 0 2px #dd909091;
