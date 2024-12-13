@@ -1,4 +1,5 @@
 function processBill(e) {
+    const hunterMultiplier = false;
     const billList = [];
     const ranks = ["Hunter", "Trainee Ranger", "Park Ranger", "Senior Ranger", "Deputy Ranger", "Head Ranger"];
     
@@ -18,75 +19,89 @@ function processBill(e) {
         let [name, amount, item] = datalist;
         
         // Remove ranks from names
+        let isRanger = false;
         ranks.forEach(rank => {
             if (name.includes(rank)) {
                 datalist[0] = name.replace(rank + " ", "");
+                if (rank !== "Hunter") {
+                    isRanger = true;
+                }
             }
         });
-        
-        // Calculate amount owed
-        const amountCost = amount.slice(amount.indexOf("(") + 2, -1);
-        if (item.includes("Vehicle Insurance")) {
-            const insuranceCost = amount.slice(amount.indexOf(" ") + 1);
-            datalist[1] = parseInt(insuranceCost, 10);
-        } else if (amount.startsWith("-")) {
-            datalist[1] = parseInt(amountCost, 10);
-        } else {
-            datalist[1] = -parseInt(amountCost, 10);
-        }
 
         const itemCount = parseInt(amount.slice(1, amount.indexOf("(")).replace(" ", ""), 10);
         datalist.push(itemCount);
+        
+        // Calculate amount owed
+        let amountCost = amount.slice(amount.indexOf("(") + 2, -1);
+        if (item.includes("Vehicle Insurance")) {
+            const insuranceCost = amount.slice(amount.indexOf(" ") + 1);
+            datalist[1] = parseInt(insuranceCost, 10);
+        } else {
+            amountCost = parseInt(amountCost, 10);
+            if (!isRanger && item === ".308 Winchester" && hunterMultiplier ) {
+                amountCost = itemCount * 150
+            }
+
+            if (amount.startsWith("-")) {
+                datalist[1] = amountCost;
+            } else {
+                datalist[1] = -amountCost;
+            }
+        }
+
+        datalist.push(isRanger);
 
         billList.push(datalist);
     });
 
 
-
-    const seperateBills = {};
+    const separateBills = {};
     billList.forEach(log => {
-        const [name, amount, item, itemCount] = log;
+        const [name, amount, item, itemCount, isRanger] = log;
 
-        if (!seperateBills[name]) {
-            seperateBills[name] = { "Bill": 0, "Items": {}};
+        if (!separateBills[name]) {
+            separateBills[name] = { "Bill": 0, "Items": {}, "IsRanger": isRanger};
         }
         
-        seperateBills[name]["Bill"] += amount;
+        separateBills[name]["Bill"] += amount;
 
-        if (!seperateBills[name]["Items"][item]) {
-            seperateBills[name]["Items"][item] = 0;
+        if (!separateBills[name]["Items"][item]) {
+            separateBills[name]["Items"][item] = [0, 0]; // item count, total cost
         }
 
         if (amount >= 0) {
-            seperateBills[name]["Items"][item] += itemCount;
+            separateBills[name]["Items"][item][0] += itemCount;
+            separateBills[name]["Items"][item][1] += amount;
         } else if (amount < 0) {
-            seperateBills[name]["Items"][item] -= itemCount;
+            separateBills[name]["Items"][item][0] -= itemCount;
+            separateBills[name]["Items"][item][1] += amount;
         }
 
-        if (seperateBills[name]["Items"][item] === 0) {
-            delete seperateBills[name]["Items"][item];
+        if (separateBills[name]["Items"][item][0] === 0) {
+            delete separateBills[name]["Items"][item];
         }
     });
 
-    const tempSeperateBills = {};
-    for (const person in seperateBills) {
-        if (seperateBills[person]["Bill"] > 0) {
-            tempSeperateBills[person] = seperateBills[person];
+    const tempSeparateBills = {};
+    for (const person in separateBills) {
+        if (separateBills[person]["Bill"] > 0) {
+            tempSeparateBills[person] = separateBills[person];
         }
     }
 
-    const sortedSeperateBills = Object.keys(tempSeperateBills).sort().reduce((acc, key) => {
-        acc[key] = tempSeperateBills[key];
+    const sortedSeparateBills = Object.keys(tempSeparateBills).sort().reduce((acc, key) => {
+        acc[key] = tempSeparateBills[key];
         return acc;
     }, {});
 
-    // for (const person in sortedSeperateBills) {
-    //     console.log(`${person} - ${JSON.stringify(sortedSeperateBills[person])}`)
+    // for (const person in sortedSeparateBills) {
+    //     console.log(`${person} - ${JSON.stringify(sortedSeparateBills[person])}`)
     // }
 
     let outputText = "";
-    for (const person in sortedSeperateBills) {
-        outputText += `${person}\t${sortedSeperateBills[person]["Bill"]}\n`;
+    for (const person in sortedSeparateBills) {
+        outputText += `${person}\t${sortedSeparateBills[person]["Bill"]}\n`;
     }
 
     outputText = outputText.slice(0, -1);
@@ -98,25 +113,30 @@ function processBill(e) {
 
     let listOfBillsInnerHTML = ""
 
-    for (const person in sortedSeperateBills) {
-        const personBill = sortedSeperateBills[person]["Bill"];
-        const personItems = sortedSeperateBills[person]["Items"];
-        const formattedPersonBill = new Intl.NumberFormat('en-GB', {
+    for (const person in sortedSeparateBills) {
+        const personBill = sortedSeparateBills[person]["Bill"];
+        const personItems = sortedSeparateBills[person]["Items"];
+        const currencyFormat = new Intl.NumberFormat('en-GB', {
                                 style: 'currency',
                                 currency: 'GBP',
                                 minimumFractionDigits: 0, // Removes decimals
-                            }).format(personBill);
+                            })
+        const formattedPersonBill = currencyFormat.format(personBill);
         listOfBillsInnerHTML += `<div class="bill-tab" name-and-bill="${person} - ${formattedPersonBill}">`;
         listOfBillsInnerHTML += '<div class="bill-tab-header" onclick="toggleInformation(this)">'; // Header START
-        listOfBillsInnerHTML += `<div class="name-and-bill">${person} - ${formattedPersonBill}</div>`;
+        const prefix = sortedSeparateBills[person]["IsRanger"] ? "RANGER | " : ""
+        listOfBillsInnerHTML += `<div class="name-and-bill">${prefix + person} - ${formattedPersonBill}</div>`;
         listOfBillsInnerHTML += '<div class="bill-buttons"></div>';
         listOfBillsInnerHTML += '<div class="bill-tab-arrow">></div>';
         listOfBillsInnerHTML += '</div>'; // Header END
         listOfBillsInnerHTML += '<div class="bill-tab-information">'; // Information START
         for (const itemName in personItems) {
-            const itemAmount = personItems[itemName];
+            const itemInfo = personItems[itemName];
+            const itemAmount = itemInfo[0];
+            const formattedItemCost = currencyFormat.format(itemInfo[1]);
             listOfBillsInnerHTML += '<div class="bill-information-divider"></div>';
-            listOfBillsInnerHTML += `<div class="bill-information-item">${itemName} | ${itemAmount}</div>`;
+            listOfBillsInnerHTML += '<div class="bill-information-item"><div class="bill-information-item-name">'
+            listOfBillsInnerHTML += `${itemName} | ${itemAmount}</div><div class="bill-information-item-cost">${formattedItemCost}</div></div>`;
         }
         listOfBillsInnerHTML += '</div></div>'; // Information & Tab END
 
@@ -137,7 +157,7 @@ function processBill(e) {
         e.style.background = buttonActivatedColour
         setTimeout(() => {
             e.textContent = "Generate";
-            e.style.background = buttonNormalColour
+            e.style.background = ""
         }, 2500);
     }
 }

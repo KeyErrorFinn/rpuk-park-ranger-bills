@@ -31,12 +31,19 @@ function generateMessages(e) {
                 numberButton.addEventListener('click', function(event) {
                     event.stopPropagation();
                     navigator.clipboard.writeText(number);
+                    if (!this.classList.contains("last-number")) {
+                        const lastNumber = document.querySelector(".small-action-btn.last-number");
+                        if (lastNumber) {
+                            lastNumber.classList.remove("last-number");
+                        }
+                        this.classList.add("last-number");
+                    }
                     if (this.textContent !== "Copied") {
                         this.textContent = "Copied";
-                        this.style.background = resetButtonBackgroundColour
+                        this.style.background = resetButtonBackgroundColour;
                         setTimeout(() => {
                             this.textContent = number;
-                            this.style.background = numberButtonBackground
+                            this.style.background = "";
                         }, 2500);
                     }
                 });
@@ -52,12 +59,19 @@ function generateMessages(e) {
                     message = message.replace("[FIRSTNAME]", name.split(" ")[0])
                     message = message.replace("[AMOUNT]", bill)
                     navigator.clipboard.writeText(message);
+                    if (!this.classList.contains("last-message")) {
+                        const lastMessage = document.querySelector(".small-action-btn.last-message");
+                        if (lastMessage) {
+                            lastMessage.classList.remove("last-message");
+                        }
+                        this.classList.add("last-message");
+                    }
                     if (this.textContent !== "Copied") {
                         this.textContent = "Copied";
-                        this.style.background = resetButtonBackgroundColour
+                        this.style.background = resetButtonBackgroundColour;
                         setTimeout(() => {
                             this.textContent = "Message";
-                            this.style.background = messageButtonBackground
+                            this.style.background = "";
                         }, 2500);
                     }
                 });

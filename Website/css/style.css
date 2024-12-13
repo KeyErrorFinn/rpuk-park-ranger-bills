@@ -19,44 +19,27 @@
 
 
 :root {
-    /* --main-background: url(../images/background.png); */
     --main-background: #131920;
-
-    /* --card-background-color: #063102; */
     --card-background-color: #1b232d;
-    /* --card-border: none; */
     --card-border: solid #263240 1px;
-    /* --card-box-shadow: black 3px 3px 4px 0px; */
     --card-box-shadow: none;
 
-    /* --input-background-color: #0B4B03; */
     --input-background-color: #263240;
-    /* --input-border: #0F7104; */
     --input-border: solid #303f50 1px;
-    /* --input-color: #DDDDDD; */
     --input-color: #bfbfbf;
-    /* --input-placeholder-color: #0F7104; */
     --input-placeholder-color: none;
-    /* --input-focus-border: #1cd508; */
-    /* --input-focus-border: solid #4680ff 1px !important; */
     --input-focus-border: solid #36c47d 1px !important;
-    /* --input-focus-box-shadow: 0 0 0 .25rem rgba(13, 253, 49, 0.25); */
     --input-focus-box-shadow: none;
-    /* --input-readonly-opacity: 1; */
     --input-readonly-opacity: 0.6;
 
-    /* --action-btn-background: linear-gradient(100deg, #E6E600 -10%, #B95C00); */
     --action-btn-background: #36c47d;
-    /* --action-btn-hover-background: linear-gradient(100deg, #E6E600 -10%, #B95C00); */
     --action-btn-hover-background: #2fab6d;
-    /* --btn-hover-scale: 1.03; */
     --btn-hover-scale: 1;
-    /* --action-btn-active-background: linear-gradient(100deg, #E6E600 -10%, #B95C00); */
     --action-btn-active-background: #299a61;
+    --action-btn-fail-background: #c43636;
 }
 
 * {
-    /* font-family: "Noto Sans"; */
     font-family: "Inter var",sans-serif;
     color: white;
 }
@@ -87,7 +70,7 @@ body {
 .custom-scroll-bar::-webkit-scrollbar-thumb:active {
     background: linear-gradient(to bottom, #E6E600 -10%, #B95C00);
 
-}  
+}
 
 .box-container {
     display: flex;
@@ -264,6 +247,13 @@ body {
                             margin-right: 12px;
                         }
 
+                            .small-action-btn.last-number, .small-action-btn.last-message {
+                                /* outline: solid #2c429c 3px; */
+                                /* box-shadow: #610f0f 3px 3px 5px; */
+                                /* background: linear-gradient(100deg, #aeae00 -10%, #683400); */
+                                background: #683400;
+                            }
+
                     .bill-tab-arrow {
                         display: flex;
                         color: rgb(212, 212, 212);
@@ -296,6 +286,8 @@ body {
                     }
 
                     .bill-information-item {
+                        display: flex;
+                        justify-content: space-between;
                         font-size: 14px;
                         margin-top: 5px;
                     }
