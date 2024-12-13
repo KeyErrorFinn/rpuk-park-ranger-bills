@@ -2,7 +2,15 @@ buttonNormalColour = "var(--action-btn-background)"
 buttonActivatedColour = "#5D5D5D"
 
 function toggleInformation(e) {
-    e.parentElement.classList.toggle("open");
+    const parentElement = e.parentElement;
+    const informationElement = parentElement.querySelector(".bill-tab-information");
+    parentElement.classList.toggle("open");
+    if (parentElement.classList.contains("open")) {
+        const fullHeight = informationElement.scrollHeight + 5 + 'px';
+        informationElement.style.maxHeight = fullHeight;
+    } else {
+        informationElement.style.maxHeight = '0px';
+    }
 
     const listOfBills = document.getElementById("listOfBills");
     

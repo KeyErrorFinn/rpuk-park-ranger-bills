@@ -67,21 +67,28 @@ function processBill(e) {
         separateBills[name]["Bill"] += amount;
 
         if (!separateBills[name]["Items"][item]) {
-            separateBills[name]["Items"][item] = [0, 0]; // item count, total cost
+            separateBills[name]["Items"][item] = {"Taken": [0, 0], "Given": [0, 0]}; // item count, total cost
         }
+
+        // console.log(separateBills["Ethan Walker"])
+        try {
+            // console.log(separateBills["Ethan Walker"]["Items"]["Hunting Knife"])
+        } catch (error) {}
 
         if (amount >= 0) {
-            separateBills[name]["Items"][item][0] += itemCount;
-            separateBills[name]["Items"][item][1] += amount;
+            separateBills[name]["Items"][item]["Taken"][0] += itemCount;
+            separateBills[name]["Items"][item]["Taken"][1] += amount;
         } else if (amount < 0) {
-            separateBills[name]["Items"][item][0] -= itemCount;
-            separateBills[name]["Items"][item][1] += amount;
+            separateBills[name]["Items"][item]["Given"][0] += itemCount;
+            separateBills[name]["Items"][item]["Given"][1] += amount;
         }
 
-        if (separateBills[name]["Items"][item][0] === 0) {
-            delete separateBills[name]["Items"][item];
-        }
+        // if (separateBills[name]["Items"][item][0] <= 0) {
+        //     delete separateBills[name]["Items"][item];
+        // }
     });
+
+    // console.log(separateBills)
 
     const tempSeparateBills = {};
     for (const person in separateBills) {
@@ -132,11 +139,30 @@ function processBill(e) {
         listOfBillsInnerHTML += '<div class="bill-tab-information">'; // Information START
         for (const itemName in personItems) {
             const itemInfo = personItems[itemName];
-            const itemAmount = itemInfo[0];
-            const formattedItemCost = currencyFormat.format(itemInfo[1]);
             listOfBillsInnerHTML += '<div class="bill-information-divider"></div>';
-            listOfBillsInnerHTML += '<div class="bill-information-item"><div class="bill-information-item-name">'
-            listOfBillsInnerHTML += `${itemName} | ${itemAmount}</div><div class="bill-information-item-cost">${formattedItemCost}</div></div>`;
+
+            if (true) {
+                const differenceItemAmount = itemInfo["Taken"][0]-itemInfo["Given"][0];
+                const formattedDifferenceItemCost = currencyFormat.format(itemInfo["Taken"][1]+itemInfo["Given"][1]);
+                listOfBillsInnerHTML += '<div class="bill-information-item difference-item"><div class="bill-information-item-name">'
+                listOfBillsInnerHTML += `${itemName} | ${differenceItemAmount}</div><div class="bill-information-item-cost">${formattedDifferenceItemCost}</div></div>`;
+            }
+
+            if (itemInfo["Taken"][0] > 0) {
+                const takenItemAmount = itemInfo["Taken"][0];
+                const formattedTakenItemCost = currencyFormat.format(itemInfo["Taken"][1]);
+                listOfBillsInnerHTML += '<div class="bill-information-item taken-item"><div class="bill-information-item-name">'
+                listOfBillsInnerHTML += `${itemName} | ${takenItemAmount}</div><div class="bill-information-item-cost">${formattedTakenItemCost}</div></div>`;
+            }
+            // if (itemInfo["Taken"][0] > 0 && itemInfo["Given"][0] > 0) {
+            //     listOfBillsInnerHTML += '<div class="bill-information-divider"></div>';
+            // }
+            if (itemInfo["Given"][0] > 0) {
+                const givenItemAmount = itemInfo["Given"][0];
+                const formattedGivenItemCost = currencyFormat.format(itemInfo["Given"][1]);
+                listOfBillsInnerHTML += '<div class="bill-information-item given-item"><div class="bill-information-item-name">'
+                listOfBillsInnerHTML += `${itemName} | ${givenItemAmount}</div><div class="bill-information-item-cost">${formattedGivenItemCost}</div></div>`;
+            }
         }
         listOfBillsInnerHTML += '</div></div>'; // Information & Tab END
 

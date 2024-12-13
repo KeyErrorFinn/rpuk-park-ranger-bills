@@ -78,8 +78,9 @@ The Website Version can be found [here](https://keyerrorfinn.github.io/rpuk-park
 - [x] <s>Make last copied number/message stand out to remember place in list</s>
 - [x] <s>Show if person is Ranger</s>
 - [x] <s>Add multiplier to bullets for non-rangers **(CURRENTLY DEACTIVATED)**</s>
-- [ ] Show total items in and total items out each item separately 
-- [ ] Show items returned in the bill log even if none were taken out
+- [x] <s>Fix info box cutting off information past 200px and all boxes open at same speed no matter the height</s>
+- [x] <s>Show total items in and total items out each item separately</s>
+- [x] <s>Show items returned in the bill log even if none were taken out</s>
 - [ ] Redesign Website (ALMOST)
 - [ ] Add Error Log
 - [ ] Add information tooltips to each small box
