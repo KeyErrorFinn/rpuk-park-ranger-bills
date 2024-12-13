@@ -1,10 +1,10 @@
-buttonNormalColour = "linear-gradient(100deg, #E6E600 -10%, #B95C00)"
+buttonNormalColour = "var(--action-btn-background)"
 buttonActivatedColour = "#5D5D5D"
 
 function toggleInformation(e) {
     e.parentElement.classList.toggle("open");
 
-    const listOfBills = document.getElementById("list-of-bills");
+    const listOfBills = document.getElementById("listOfBills");
     
     if (listOfBills.scrollHeight > listOfBills.clientHeight) {
         listOfBills.style.paddingRight = "10px";
@@ -28,6 +28,13 @@ function copyOutputForSheet(e) {
             }, 2500);
         }
         navigator.clipboard.writeText(outputForSheet.value);
+    } else {
+        e.style.background = "var(--action-btn-fail-background)";
+        e.style.color = "#c1c1c1";
+        setTimeout(() => {
+            e.style.background = "";
+        e.style.color = "";
+        }, 1000);
     }
 }
 

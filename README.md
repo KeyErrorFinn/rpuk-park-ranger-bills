@@ -21,13 +21,13 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
 **RPUK** = GTA V FiveM Roleplay Server [ROLEPLAY UK](https://www.roleplay.co.uk)
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
-- [About The Project](#about-the-project)
-  - [There are two sections](#there-are-two-sections)
-  - [The helper works by doing this](#the-helper-works-by-doing-this)
+- [About the Project](#about-the-project)
+  - [There are two sections:](#there-are-two-sections)
+  - [The helper works by doing this:](#the-helper-works-by-doing-this)
   - [Website Version](#website-version)
-    - [What it includes](#what-it-includes)
-    - [TO-DO](#to-do)
-  - [EXE Version](#exe-version-not-maintained)
+    - [What it includes:](#what-it-includes)
+    - [TO-DO:](#to-do)
+  - [EXE Version](#exe-version)
 
 
 ## About the Project
@@ -53,15 +53,17 @@ The Website Version can be found [here](https://keyerrorfinn.github.io/rpuk-park
 
 #### What it includes:
 - Left
-  - A small box for inputing the bill data (TOP)
+  - A small box for inputting the bill data (TOP)
   - A small box for copying the generated bills (BOTTOM)
 - Middle
   - A big box that displays each person with information such as:
+    - Whether they are a Ranger
     - Name
     - Bill amount
     - Dropdown of:
-      - Items taken/given
-      - Item quanitity
+      - Items taken/given total
+      - Item quantity
+      - Item cost total
     - *ONCE GIVEN SHEET INPUT AND GENERATED:*
       - Contact Number button that copies to clipboard
       - Custom Message button that copies to clipboard 
@@ -72,11 +74,18 @@ The Website Version can be found [here](https://keyerrorfinn.github.io/rpuk-park
 #### TO-DO:
 - [x] <s>Create Program</s>
 - [x] <s>Convert to static website</s>
-- [ ] Redesign Website
+- [x] <s>Add individual item bill costs in dropdown for each person</s>
+- [x] <s>Make last copied number/message stand out to remember place in list</s>
+- [x] <s>Show if person is Ranger</s>
+- [x] <s>Add multiplier to bullets for non-rangers **(CURRENTLY DEACTIVATED)**</s>
+- [ ] Show total items in and total items out each item separately 
+- [ ] Show items returned in the bill log even if none were taken out
+- [ ] Redesign Website (ALMOST)
 - [ ] Add Error Log
 - [ ] Add information tooltips to each small box
 - [ ] Add "Person not found" error to sheet input box
-- [ ] Add individual item bill costs in dropdown for each person
+- [ ] Make mini-game about... person
+- [ ] COMMENT CODE
 
 ### EXE Version
 > [!WARNING]
