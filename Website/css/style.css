@@ -26,8 +26,8 @@
 
     --input-background-color: #263240;
     --input-border: solid #303f50 1px;
-    --input-color: #bfbfbf;
-    --input-placeholder-color: none;
+    --input-color: #cfcfcf;
+    --input-placeholder-color: #5c5c5cba;
     --input-focus-border: solid #36c47d 1px !important;
     --input-focus-box-shadow: none;
     --input-readonly-opacity: 0.6;
@@ -37,6 +37,10 @@
     --btn-hover-scale: 1;
     --action-btn-active-background: #299a61;
     --action-btn-fail-background: #c43636;
+
+    --tooltip-text-background-opaque: rgba(59, 59, 59, 0.76);
+    --tooltip-text-background: rgb(78, 78, 78);
+    --tooltip-text-color: #d7d7d7;
 }
 
 * {
@@ -132,8 +136,83 @@ body {
             .small-box-header {
                 font-weight: 600;
                 font-size: 22px;
-                /* border-bottom: var(--card-border); */
             }
+
+                .help-tooltip {
+                    font-size: 18px;
+                    color: #5e5f63;
+                    background: radial-gradient(circle, #caccddce 50%, transparent 50%);
+                    border-radius: 50%;
+                    cursor: pointer;
+                    margin-left: 2px;
+                }
+
+
+                /* Tooltip container */
+                .help-tooltip {
+                    position: relative;
+                    display: inline-block;
+                }
+                
+                    /* Tooltip text */
+                    .help-tooltip .help-tooltip-text {
+                        visibility: hidden;
+                        font-size: 14px;
+                        font-weight: 400;
+                        width: max-content;
+                        max-width: 140px;
+                        text-align: start;
+                        line-height: 14px;
+                        background-color: var(--tooltip-text-background);
+                        color: var(--tooltip-text-color);
+                        padding: 7px;
+                        border-radius: 6px;
+                        opacity: 0;
+                        transition: opacity 0.3s;
+                        cursor: initial;
+                        box-shadow: #353535 0px 0px 3px 2px;
+                    
+                        /* Position the tooltip text - see examples below! */
+                        position: absolute;
+                        z-index: 1;
+                        top: -1px;
+                    }
+                    
+                        /* Show the tooltip text when you mouse over the tooltip container */
+                        .help-tooltip:hover .help-tooltip-text {
+                            visibility: visible;
+                            opacity: 1;
+                        }
+
+                        .help-tooltip .help-tooltip-text::after {
+                            content: " ";
+                            position: absolute;
+                            top: 10px;
+                            margin-top: -5px;
+                            border-width: 5px;
+                            border-style: solid;
+                        }
+
+                        .help-tooltip .help-tooltip-text.small-help-tooltip-text-right {
+                            left: 105%;
+                            margin-left: 8px;
+                        }.help-tooltip .help-tooltip-text.small-help-tooltip-text-right::after {
+                            right: 100%;
+                            border-color: transparent var(--tooltip-text-background) transparent transparent;
+                        }
+                        
+                        .help-tooltip .help-tooltip-text.small-help-tooltip-text-left {
+                            right: 105%;
+                            margin-right: 8px;
+                        }.help-tooltip .help-tooltip-text.small-help-tooltip-text-left::after {
+                            left: 100%;
+                            border-color: transparent transparent transparent var(--tooltip-text-background);
+                        }
+
+                            .help-tooltip .help-tooltip-text b {
+                                color: var(--tooltip-text-color);
+                                text-decoration: underline;
+                            }
 
             .small-box-container textarea {
                 flex: 1;
@@ -181,7 +260,26 @@ body {
             font-size: 28px;
             text-align: center;
             margin-bottom: -7px;
+            padding-left: 30px;
         }
+
+            .big-box-header .help-tooltip {
+                font-size: 22px;
+            }
+            
+                /* Tooltip text */
+                .big-box-header .help-tooltip .help-tooltip-text {
+                    max-width: 329px;
+
+                    /* Position the tooltip text - see examples below! */
+                    left: 105%;
+                    margin-left: 8px;
+                }
+                
+                    .big-box-header .help-tooltip .help-tooltip-text::after {
+                        right: 100%;
+                        border-color: transparent var(--tooltip-text-background) transparent transparent;
+                    }
 
         .big-box-header-divider {
             background-color: white;
@@ -248,9 +346,6 @@ body {
                         }
 
                             .small-action-btn.last-number, .small-action-btn.last-message {
-                                /* outline: solid #2c429c 3px; */
-                                /* box-shadow: #610f0f 3px 3px 5px; */
-                                /* background: linear-gradient(100deg, #aeae00 -10%, #683400); */
                                 background: #683400;
                             }
 
@@ -274,10 +369,6 @@ body {
                     max-height: 0px;
                     transition: all 0.5s ease-in-out;
                 }
-
-                    .bill-tab.open .bill-tab-information {
-                        /* max-height: 200px; */
-                    }
 
                     .bill-information-divider {
                         background-color: white;

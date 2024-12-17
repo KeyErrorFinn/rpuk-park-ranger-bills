@@ -8,23 +8,60 @@
     <script src="js/script.js" defer="defer"></script>
     <script src="js/billProcessor.js" defer="defer"></script>
     <script src="js/messageCreator.js" defer="defer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <div class="box-container">
         <div class="two-small-box-container">
             <div class="small-box-container">
-                <div class="small-box-header">Log Text Input</div>
-                <textarea class="small-box-text-input custom-scroll-bar" id="logTextInput" placeholder="Log Text ..."></textarea>
+                <div class="small-box-header">
+                    Log Text Input
+                    <i class="fa-solid fa-circle-question help-tooltip">
+                        <span class="help-tooltip-text small-help-tooltip-text-right">
+                            This <b>Log Text Input box</b> is where you put the information you get from the <b>in-game computer</b>.
+                            <br><br>
+                            You can either copy and paste the data multiple times (depending on amount of pages) or just paste it
+                            all into a text file and then paste it here.
+                        </span>
+                    </i>
+                </div>
+                <textarea class="small-box-text-input custom-scroll-bar" id="logTextInput" placeholder="Log Text ..." spellcheck="false"></textarea>
                 <div class="action-btn" onclick="processBill(this)">Generate</div>
             </div>
             <div class="small-box-container">
-                <div class="small-box-header">Output For Sheet</div>
-                <textarea class="readonly custom-scroll-bar" id="outputForSheet" placeholder="Generate for Output ..." readonly></textarea>
+                <div class="small-box-header">
+                    Output For Sheet
+                    <i class="fa-solid fa-circle-question help-tooltip">
+                        <span class="help-tooltip-text small-help-tooltip-text-right">
+                            This <b>Output For Sheet box</b> is where the generated bill output for the <b>Senior+ Google Sheet</b> goes.
+                            <br><br>
+                            Once the bills have been properly generated from the <b>Log Text Input box</b>, you just need to press the
+                            <b>Copy button</b> and paste the output into the <b>Google Sheet</b>.
+                        </span>
+                    </i>
+                </div>
+                <textarea class="readonly custom-scroll-bar" id="outputForSheet" placeholder="Generate for Output ..." readonly spellcheck="false"></textarea>
                 <div class="action-btn" onclick="copyOutputForSheet(this)">Copy</div>
             </div>
         </div>
         <div class="big-box-container">
-            <div class="big-box-header">Bill List</div>
+            <div class="big-box-header">
+                Bill List
+                <i class="fa-solid fa-circle-question help-tooltip">
+                    <span class="help-tooltip-text">
+                        This <b>Bill List box</b> is where all the generated bill information <b>appears</b>.
+                        <br><br>
+                        Once generating the bills from the <b>Log Text Input box</b>, each <b>bill recipient</b> will show here
+                        <b>as a tab</b> with their <b>name</b> and <b>bill amount</b>. You can <b>expand</b> each tab to show <b>every item</b> they have
+                        taken <b>in or out</b> of the <b>armoury</b>, along with the <b>quantity</b> and <b>bill change</b> for each.
+                        <br><br>
+                        After you have <b>generated the messages</b> from <b>the Sheet Input box</b>, each <b>tab</b> will gain <b>two buttons</b>.
+                        One button will be labelled as <b>the recipient's phone number</b>, and the other would be labelled
+                        as <b>"Message"</b>. You can <b>click</b> the phone number button to <b>copy</b> the recipient's phone number, and
+                        <b>click</b> the message button to <b>copy</b> the customized message for that recipient.
+                    </span>
+                </i>
+            </div>
             <div class="big-box-header-divider"></div>
             <div class="custom-scroll-bar" id="listOfBills">
                 <div class="no-bills">Use Log Text Input to generate Bills</div>
@@ -32,13 +69,43 @@
         </div>
         <div class="two-small-box-container">
             <div class="small-box-container">
-                <div class="small-box-header">Sheet Input</div>
-                <textarea class="small-box-text-input custom-scroll-bar" id="sheetInput" placeholder="Sheet Name, Bill, Days active, Phone Number ..."></textarea>
+                <div class="small-box-header">
+                    Sheet Input
+                    <i class="fa-solid fa-circle-question help-tooltip">
+                        <span class="help-tooltip-text small-help-tooltip-text-right">
+                            This <b>Sheet Input box</b> is where you put information from the <b>Senior+ Google Sheet</b>.
+                            <br><br>
+                            After pasting the <b>Output For Sheet box</b> content into the <b>Google Sheet</b>, you then
+                            <b>copy</b> the same data, <b>along</b> with the next <b>two</b> columns of automatically
+                            generated data here.
+                            <br><br>
+                            So <b>you should have the columns</b>; <b>Name</b>, <b>Bill</b>,
+                            <b>Days active</b>, and <b>Phone Number</b> for the information you already pasted.
+                        </span>
+                    </i>
+                </div>
+                <textarea class="small-box-text-input custom-scroll-bar" id="sheetInput" placeholder="Sheet Name, Bill, Days active, Phone Number ..." spellcheck="false"></textarea>
                 <div class="action-btn" onclick="generateMessages(this)">Generate</div>
             </div>
             <div class="small-box-container">
-                <img src="" alt="">
-                <div class="small-box-header">Sample Message</div>
+                <div class="small-box-header">
+                    Sample Message
+                    <i class="fa-solid fa-circle-question help-tooltip">
+                        <span class="help-tooltip-text small-help-tooltip-text-right">
+                            This <b>Sample Message box</b> is where the <b>custom message</b> that is sent to all <b>bill
+                            recipients</b> is set.
+                            <br><br>
+                            You can modify the message to however you want and <b>reset</b> it back to its
+                            original state if needed.
+                            <br><br>
+                            <b>Custom Attributes:</b><br>
+                            - [FIRSTNAME] -> Recipient's first name<br>
+                            - [AMOUNT] -> Recipient's bill
+                            <br><br>
+                            Contact <b>mrbuushy</b> on discord to add more.
+                        </span>
+                    </i>
+                </div>
                 <textarea class="custom-scroll-bar" id="sampleMessage" placeholder="Create Sample Message ...">
 Hello [FIRSTNAME],
 

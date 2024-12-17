@@ -71,6 +71,8 @@ The Website Version can be found [here](https://keyerrorfinn.github.io/rpuk-park
   - A small box for inputting the google sheet data (Name, Bill, Days active, Contact number) (TOP)
   - A small box for changing the custom message that gets generated for each person (BOTTOM)
 
+**Each box also includes a tooltip icon that tells you what the box does and how to use it.**
+
 #### TO-DO:
 - [x] <s>Create Program</s>
 - [x] <s>Convert to static website</s>
@@ -81,12 +83,13 @@ The Website Version can be found [here](https://keyerrorfinn.github.io/rpuk-park
 - [x] <s>Fix info box cutting off information past 200px and all boxes open at same speed no matter the height</s>
 - [x] <s>Show total items in and total items out each item separately</s>
 - [x] <s>Show items returned in the bill log even if none were taken out</s>
+- [x] <s>Add information tooltips to each small box</s>s>
 - [ ] Redesign Website (ALMOST)
 - [ ] Add Error Log
-- [ ] Add information tooltips to each small box
 - [ ] Add "Person not found" error to sheet input box
 - [ ] Make mini-game about... person
 - [ ] COMMENT CODE
+- [ ] Make Website Design Responsive
 
 ### EXE Version
 > [!WARNING]
