@@ -3,92 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPUK Rangers Bills Solver</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="js/script.js" defer="defer"></script>
+    <script src="js/addTestData.js" defer="defer"></script>
     <script src="js/billProcessor.js" defer="defer"></script>
     <script src="js/messageCreator.js" defer="defer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Document</title>
 </head>
 <body>
-    <div class="box-container">
-        <div class="two-small-box-container">
-            <div class="small-box-container">
-                <div class="small-box-header">
-                    Log Text Input
-                    <i class="fa-solid fa-circle-question help-tooltip">
-                        <span class="help-tooltip-text small-help-tooltip-text-right">
-                            This <b>Log Text Input box</b> is where you put the information you get from the <b>in-game computer</b>.
-                            <br><br>
-                            You can either copy and paste the data multiple times (depending on amount of pages) or just paste it
-                            all into a text file and then paste it here.
-                        </span>
-                    </i>
+    <div class="main-container">
+        <div class="left-boxes-container">
+            <div class="top-box box">
+                <!-- <div class="small-box-title">Log Text Input</div> -->
+                <div class="box-option-btns-container">
+                    <div class="box-option-btn active current-step" id="log-input-tab-btn">
+                        Logs Input
+                        <i class="fa-solid fa-circle-question help-tooltip">
+                            <span class="help-tooltip-text small-help-tooltip-text-right">
+                                This <b>Log Text Input box</b> is where you put the information you get from the <b>in-game computer</b>.
+                                <br><br>
+                                You can either copy and paste the data multiple times (depending on amount of pages) or just paste it
+                                all into a text file and then paste it here.
+                            </span>
+                        </i>
+                    </div>
+                    <div class="box-option-btn" id="sheet-input-tab-btn">
+                        Sheet Input
+                        <i class="fa-solid fa-circle-question help-tooltip">
+                            <span class="help-tooltip-text small-help-tooltip-text-right">
+                                This <b>Sheet Input box</b> is where you put information from the <b>Senior+ Google Sheet</b>.
+                                <br><br>
+                                After pasting the <b>Output For Sheet box</b> content into the <b>Google Sheet</b>, you then
+                                <b>copy</b> the same data, <b>along</b> with the next <b>two</b> columns of automatically
+                                generated data here.
+                                <br><br>
+                                So <b>you should have the columns</b>; <b>Name</b>, <b>Bill</b>,
+                                <b>Days active</b>, and <b>Phone Number</b> for the information you already pasted.
+                            </span>
+                        </i>
+                    </div>
                 </div>
-                <textarea class="small-box-text-input custom-scroll-bar" id="logTextInput" placeholder="Log Text ..." spellcheck="false"></textarea>
-                <div class="action-btn" onclick="processBill(this)">Generate</div>
-            </div>
-            <div class="small-box-container">
-                <div class="small-box-header">
-                    Output For Sheet
-                    <i class="fa-solid fa-circle-question help-tooltip">
-                        <span class="help-tooltip-text small-help-tooltip-text-right">
-                            This <b>Output For Sheet box</b> is where the generated bill output for the <b>Senior+ Google Sheet</b> goes.
-                            <br><br>
-                            Once the bills have been properly generated from the <b>Log Text Input box</b>, you just need to press the
-                            <b>Copy button</b> and paste the output into the <b>Google Sheet</b>.
-                        </span>
-                    </i>
+                <div class="small-box-content-container" id="log-input-tab-container">
+                    <textarea class="small-box-text-area custom-scroll-bar" placeholder="Log Text ..." spellcheck="false"></textarea>
+                    <div class="small-box-action-btns">
+                        <div class="action-btn" id="log-input-generate-btn">Generate</div>
+                        <div class="action-btn secondary hidden" id="log-input-copy-output-btn">
+                            <i class="fa-classic fa-regular fa-copy fa-fw"></i>
+                            Output
+                            <i class="fa-solid fa-circle-question help-tooltip">
+                                <span class="help-tooltip-text small-help-tooltip-text-right">
+                                    This <b>Output For Sheet box</b> is where the generated bill output for the <b>Senior+ Google Sheet</b> goes.
+                                    <br><br>
+                                    Once the bills have been properly generated from the <b>Log Text Input box</b>, you just need to press the
+                                    <b>Copy button</b> and paste the output into the <b>Google Sheet</b>.
+                                </span>
+                            </i>
+                        </div>
+                    </div>
                 </div>
-                <textarea class="readonly custom-scroll-bar" id="outputForSheet" placeholder="Generate for Output ..." readonly spellcheck="false"></textarea>
-                <div class="action-btn" onclick="copyOutputForSheet(this)">Copy</div>
-            </div>
-        </div>
-        <div class="big-box-container">
-            <div class="big-box-header">
-                Bill List
-                <i class="fa-solid fa-circle-question help-tooltip">
-                    <span class="help-tooltip-text">
-                        This <b>Bill List box</b> is where all the generated bill information <b>appears</b>.
-                        <br><br>
-                        Once generating the bills from the <b>Log Text Input box</b>, each <b>bill recipient</b> will show here
-                        <b>as a tab</b> with their <b>name</b> and <b>bill amount</b>. You can <b>expand</b> each tab to show <b>every item</b> they have
-                        taken <b>in or out</b> of the <b>armoury</b>, along with the <b>quantity</b> and <b>bill change</b> for each.
-                        <br><br>
-                        After you have <b>generated the messages</b> from <b>the Sheet Input box</b>, each <b>tab</b> will gain <b>two buttons</b>.
-                        One button will be labelled as <b>the recipient's phone number</b>, and the other would be labelled
-                        as <b>"Message"</b>. You can <b>click</b> the phone number button to <b>copy</b> the recipient's phone number, and
-                        <b>click</b> the message button to <b>copy</b> the customized message for that recipient.
-                    </span>
-                </i>
-            </div>
-            <div class="big-box-header-divider"></div>
-            <div class="custom-scroll-bar" id="listOfBills">
-                <div class="no-bills">Use Log Text Input to generate Bills</div>
-            </div>
-        </div>
-        <div class="two-small-box-container">
-            <div class="small-box-container">
-                <div class="small-box-header">
-                    Sheet Input
-                    <i class="fa-solid fa-circle-question help-tooltip">
-                        <span class="help-tooltip-text small-help-tooltip-text-right">
-                            This <b>Sheet Input box</b> is where you put information from the <b>Senior+ Google Sheet</b>.
-                            <br><br>
-                            After pasting the <b>Output For Sheet box</b> content into the <b>Google Sheet</b>, you then
-                            <b>copy</b> the same data, <b>along</b> with the next <b>two</b> columns of automatically
-                            generated data here.
-                            <br><br>
-                            So <b>you should have the columns</b>; <b>Name</b>, <b>Bill</b>,
-                            <b>Days active</b>, and <b>Phone Number</b> for the information you already pasted.
-                        </span>
-                    </i>
+                <div class="small-box-content-container hidden" id="sheet-input-tab-container">
+                    <textarea class="small-box-text-area custom-scroll-bar" id="" placeholder="Sheet Name, Bill, Days active, Phone Number ..." spellcheck="false"></textarea>
+                    <div class="small-box-action-btns">
+                        <div class="action-btn" id="sheet-input-generate-btn">Generate</div>
+                    </div>
                 </div>
-                <textarea class="small-box-text-input custom-scroll-bar" id="sheetInput" placeholder="Sheet Name, Bill, Days active, Phone Number ..." spellcheck="false"></textarea>
-                <div class="action-btn" onclick="generateMessages(this)">Generate</div>
             </div>
-            <div class="small-box-container">
-                <div class="small-box-header">
+            <div class="bottom-box box">
+                <div class="small-box-title">
                     Sample Message
                     <i class="fa-solid fa-circle-question help-tooltip">
                         <span class="help-tooltip-text small-help-tooltip-text-right">
@@ -106,15 +88,47 @@
                         </span>
                     </i>
                 </div>
-                <textarea class="custom-scroll-bar" id="sampleMessage" placeholder="Create Sample Message ...">
-Hello [FIRSTNAME],
+                <textarea class="small-box-text-area custom-scroll-bar" placeholder="Create Sample Message ..." id="sample-message-text-area">Hello [FIRSTNAME],
 
 Your bill with the Park Rangers this week is: [AMOUNT]
-Please make contact via a dispatch to us to settle this.
+Please contact us via dispatch to settle this.
 
 Regards,
 SA Royal Park Rangers</textarea>
-                <div class="reset-btn" onclick="resetSampleMessage()">Reset</div>
+                <div class="small-box-action-btns">
+                    <div class="action-btn secondary btn-grow" id="sample-message-reset-btn">
+                        <i class="fa-solid fa-rotate"></i>
+                        Reset
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-box-container">
+            <div class="big-box box">
+                <div class="big-box-title">
+                    Bill List
+                    <i class="fa-solid fa-circle-question help-tooltip">
+                        <span class="help-tooltip-text">
+                            This <b>Bill List box</b> is where all the generated bill information <b>appears</b>.
+                            <br><br>
+                            Once generating the bills from the <b>Log Text Input box</b>, each <b>bill recipient</b> will show here
+                            <b>as a tab</b> with their <b>name</b> and <b>bill amount</b>. You can <b>expand</b> each tab to show <b>every item</b> they have
+                            taken <b>in or out</b> of the <b>armoury</b>, along with the <b>quantity</b> and <b>bill change</b> for each.
+                            <br><br>
+                            After you have <b>generated the messages</b> from <b>the Sheet Input box</b>, each <b>tab</b> will gain <b>two buttons</b>.
+                            One button will be labelled as <b>the recipient's phone number</b>, and the other would be labelled
+                            as <b>"Message"</b>. You can <b>click</b> the phone number button to <b>copy</b> the recipient's phone number, and
+                            <b>click</b> the message button to <b>copy</b> the customized message for that recipient.
+                        </span>
+                    </i>
+                </div>
+                <div class="custom-scroll-bar" id="list-of-bills">
+                    <!-- <div class="no-bills">Use Log Text Input to generate Bills</div> -->
+                    <div class="no-bills-message">
+                        <div>No bills found</div>
+                        <div>Generate a bill using the input forms</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

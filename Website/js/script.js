@@ -1,58 +1,69 @@
-buttonNormalColour = "var(--action-btn-background)"
-buttonActivatedColour = "#5D5D5D"
+//// INPUTS TAB SWITCHER ////
 
-function toggleInformation(e) {
-    const parentElement = e.parentElement;
-    const informationElement = parentElement.querySelector(".bill-tab-information");
-    parentElement.classList.toggle("open");
-    if (parentElement.classList.contains("open")) {
-        const fullHeight = informationElement.scrollHeight + 5 + 'px';
-        informationElement.style.maxHeight = fullHeight;
-    } else {
-        informationElement.style.maxHeight = '0px';
-    }
+// Tab Buttons and Containers
+const logInputBtn = document.getElementById("log-input-tab-btn");
+const logInputContainer = document.getElementById("log-input-tab-container");
+const sheetInputBtn = document.getElementById("sheet-input-tab-btn");
+const sheetInputContainer = document.getElementById("sheet-input-tab-container");
 
-    const listOfBills = document.getElementById("listOfBills");
+// Button and Container links
+const tabLinks = [
+    [logInputBtn, logInputContainer],
+    [sheetInputBtn, sheetInputContainer]
+]
+
+// Add click event listeners to each tab button
+for (const [tabBtn, tabContainer] of tabLinks) {
+    // Makes tab active when clicked
+    tabBtn.addEventListener("click", () => {
+        // If the button isn't already activated
+        if (!tabBtn.classList.contains("active")) {
+            // Resets all tabs by removing "active" from buttons and "hidden" from containers
+            for (const [otherBtn, otherContainer] of tabLinks) {
+                otherBtn.classList.remove("active");
+                otherContainer.classList.add("hidden");
+            }
+
+            // Activate the clicked tab
+            tabBtn.classList.add("active");
+            tabContainer.classList.remove("hidden");
+        }
+    });
+}
+
+
+//// Sample Message Reset ////
+
+// Sample Message Button
+const sampleMessageResetBtn = document.getElementById("sample-message-reset-btn")
+
+// Resets the text in the box when clicked
+sampleMessageResetBtn.addEventListener("click", () => {
+    // Sample Message Text Area
+    const sampleMessageTextArea = document.getElementById("sample-message-text-area");
     
-    if (listOfBills.scrollHeight > listOfBills.clientHeight) {
-        listOfBills.style.paddingRight = "10px";
-    } else {
-        if (listOfBills.style.paddingLeft === "10px") {
-            listOfBills.style.paddingLeft = "0";
-        }
-    }
-
-}
-
-function copyOutputForSheet(e) {
-    const outputForSheet = document.getElementById("outputForSheet");
-    if (outputForSheet.value !== "") {
-        if (e.textContent !== "Copied") {
-            e.textContent = "Copied";
-            e.style.background = buttonActivatedColour
-            setTimeout(() => {
-                e.textContent = "Copy";
-                e.style.background = buttonNormalColour
-            }, 2500);
-        }
-        navigator.clipboard.writeText(outputForSheet.value);
-    } else {
-        e.style.background = "var(--action-btn-fail-background)";
-        e.style.color = "#c1c1c1";
-        setTimeout(() => {
-            e.style.background = "";
-        e.style.color = "";
-        }, 1000);
-    }
-}
-
-function resetSampleMessage() {
-    const sampleMessage = document.getElementById("sampleMessage");
-    sampleMessage.value = `Hello [FIRSTNAME],
+    // Sets Text Area Value
+    sampleMessageTextArea.value = `Hello [FIRSTNAME],
 
 Your bill with the Park Rangers this week is: [AMOUNT]
-Please make contact via a dispatch to us to settle this.
+Please contact us via dispatch to settle this.
 
 Regards,
 SA Royal Park Rangers`
-}
+
+    const sampleMessageResetBtnIcon = sampleMessageResetBtn.querySelector("i");
+
+    // Add the spin class
+    sampleMessageResetBtnIcon.classList.add("spin");
+
+    // Remove the spin class after the animation ends
+    setTimeout(() => {
+        sampleMessageResetBtnIcon.classList.remove("spin");
+    }, 500); // Match this to the animation duration (0.5s)
+});
+
+// const thing = document.getElementsByClassName("bill-tab")[0];
+
+// thing.addEventListener("click", () => {
+//     thing.classList.toggle("open")
+// });
