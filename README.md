@@ -84,11 +84,13 @@ The Website Version can be found [here](https://keyerrorfinn.github.io/rpuk-park
 - [x] <s>Show total items in and total items out each item separately</s>
 - [x] <s>Show items returned in the bill log even if none were taken out</s>
 - [x] <s>Add information tooltips to each small box</s>s>
-- [ ] Redesign Website (ALMOST)
-- [ ] Add Error Log
+- [x] <s>Redesign Website</s>
+- [x] <s>Copying Item Information should paste as: -5 | +3 | -2 - £10,000</s>
+- [x] <s>Add other features for Joe</s>
+- [x] <s>COMMENT CODE</s>
+- [ ] Add Error
 - [ ] Add "Person not found" error to sheet input box
 - [ ] Make mini-game about... person
-- [ ] COMMENT CODE
 - [ ] Make Website Design Responsive
 
 ### EXE Version
