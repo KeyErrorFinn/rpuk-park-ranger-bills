@@ -1,0 +1,428 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@font-face {
+    font-family: 'Inter var';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: 'Regular';
+    src: url('fonts/Inter-roman.var.woff2?v=3.18') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter var';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: italic;
+    font-named-instance: 'Italic';
+    src: url('fonts/Inter-italic.var.woff2?v=3.18') format('woff2');
+}
+
+* {
+    font-family: "Inter var",sans-serif;
+}
+
+/* Variables */
+:root {
+    --margin-between-boxes: 30px;
+
+    /* --main-background-colour: #111827; */
+    --main-background-colour: #131920;
+
+    /* --box-background-colour: #1F2937; */
+    --box-background-colour: #1b232d;
+
+    --box-border: solid #263240 1px;
+
+    --box-btn-current-step-text-shadow: #62dd33 0px 0px 6px;
+    --box-btn-hover-background-colour: #35475b65;
+    --box-btn-active-background-colour: #35475be1;
+    --box-btn-active-hover-background-colour: #3a4e65;
+
+    --text-area-colour: #cfcfcf;
+    --text-area-placeholder-colour: #5c5c5cba;
+    /* --text-area-background-colour: #111827; */
+    --text-area-background-colour: #263240;
+    --text-area-border: solid #303f50 1px;
+    --text-area-border-focus: solid #36c47d 1px !important;
+
+    --action-btn-background-colour: #36c47d;
+    --action-btn-hover-background-colour: #2fab6d;
+    --action-btn-success-background-colour: #4ed55e;
+    --action-btn-error-background-colour: #c43636;
+    --action-btn-secondary-background-colour: #35475be1;
+    --action-btn-secondary-hover-background-colour: #3a4e65;
+    --action-btn-secondary-success-background-colour: #7f8b9a;
+    --action-btn-secondary-error-background-colour: #26313e9b;
+
+    /* --bill-tab-background-colour: #263240; */
+    --bill-tab-background-colour: #131920;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: var(--main-background-colour);
+}
+
+.main-container {
+    display: flex;
+    flex: 1;
+    color: white;
+    margin: var(--margin-between-boxes);
+    gap: var(--margin-between-boxes);
+    height: calc(100% - var(--margin-between-boxes) * 2);
+}
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 15px;
+        padding: 15px;
+        background-color: var(--box-background-colour);
+        border: var(--box-border);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    /* Log Input box and Sample Message Box */
+    .left-boxes-container {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        gap: var(--margin-between-boxes);
+        height: 100%;
+    }
+
+        /* Tabs for Top Left Box */
+        .box-option-btns-container {
+            display: flex;
+            gap: 10px;
+        }
+
+            .box-option-btn {
+                color: rgb(171, 171, 171);
+                font-weight: 600;
+                padding: 8px 15px;
+                border-radius: 8px;
+                cursor: pointer;
+                user-select: none;
+                transition: all 0.3s;
+            } .box-option-btn:hover {
+                color: white;
+                scale: 1.01;
+                background-color: var(--box-btn-hover-background-colour);
+            }.box-option-btn.active {
+                color: white;
+                background-color: var(--box-btn-active-background-colour);
+            }.box-option-btn.active:hover {
+                scale: 1.01;
+                background-color: var(--box-btn-active-hover-background-colour);
+            }.box-option-btn.current-step {
+                text-shadow: var(--box-btn-current-step-text-shadow);
+            }
+
+        /* Titles for small boxes */
+        .small-box-title {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* Content for Top Left small box */
+        .small-box-content-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 10px;
+        }
+
+            .small-box-text-area {
+                flex: 1;
+                color: var(--text-area-colour);
+                font-size: 11px;
+                padding: 4px 7px;
+                background: var(--text-area-background-colour);
+                border: var(--text-area-border);
+                border-radius: 10px;
+                resize: none;
+            }.small-box-text-area::placeholder {
+                font-size: 16px;
+                color: var(--text-area-placeholder-colour);
+            }.small-box-text-area:focus {
+                outline: none;
+                border: var(--text-area-border-focus);
+            }#sample-message-text-area {
+                font-size: 18px;
+            }
+            
+            /* Action Buttons */
+            .small-box-action-btns {
+                display: flex;
+                gap: 10px;
+            }
+
+                .action-btn {
+                    padding: 7px 14px;
+                    border-radius: 6px;
+                    background-color: var(--action-btn-background-colour);
+                    cursor: pointer;
+                    user-select: none;
+                    transition: all 0.3s;
+                }.action-btn:hover {
+                    scale: 1.02;
+                    background-color: var(--action-btn-hover-background-colour);
+                }.action-btn.success {
+                    background-color: var(--action-btn-success-background-colour);
+                }.action-btn.error {
+                    scale: 1;
+                    background-color: var(--action-btn-error-background-colour);
+                    cursor: not-allowed;
+                } .action-btn.secondary {
+                    padding: 7px 12px;
+                    background-color: var(--action-btn-secondary-background-colour);
+                }.action-btn.secondary:hover {
+                    background-color: var(--action-btn-secondary-hover-background-colour);
+                }.action-btn.secondary.success {
+                    background-color: var(--action-btn-secondary-success-background-colour);
+                }.action-btn.secondary.error {
+                    scale: 1;
+                    background-color: var(--action-btn-secondary-error-background-colour);
+                    cursor: not-allowed;
+                }.action-btn.secondary.btn-grow {
+                    text-align: center;
+                    flex: 1;
+                }
+
+    /* Big Box on Right */
+    .right-box-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        height: 100%;
+        overflow: hidden;
+    }
+
+        .big-box {
+            gap: 8px;
+        }
+
+            .big-box-title {
+                color: white;
+                font-size: 25px;
+                font-weight: 600;
+                text-align: center;
+            }
+
+            /* List of Bills container */
+            #list-of-bills {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                gap: 10px;
+                overflow-y: auto;
+                min-height: 0;
+                border-radius: 8px;
+            }
+
+                /* Individual Bill Tab */
+                .bill-tab {
+                    display: flex;
+                    flex-direction: column;
+                    background-color: var(--bill-tab-background-colour);
+                    border-radius: 8px;
+                    transition: box-shadow 0.3s;
+                }.bill-tab:has(.bill-tab-header:hover):not(:has(.small-action-btn:hover)) {
+                    box-shadow: inset #06080a 0px 0px 9px 0px;
+                }
+
+                    /* Person Name, Total Bill, Buttons, and Dropdown Arrow */
+                    .bill-tab-header {
+                        font-size: 15px;
+                        display: flex;
+                        padding: 8px 10px;
+                        align-items: center;
+                        cursor: pointer;
+                    }
+
+                        /* Person Name, Total Bill */
+                        .bill-tab-person-info {
+                            display: flex;
+                            flex-grow: 1;
+                            align-items: center;
+                            gap: 8px;
+                        }
+
+                            /* Is Ranger Tag */
+                            .bill-tab-ranger-tag {
+                                font-size: 12px;
+                                color: #56d797;
+                                padding: 4px 8px;
+                                background-color: #25433494;
+                                border-radius: 5px;
+                            }
+                    
+                        /* Phone and Message Buttons */
+                        .bill-btns {
+                            font-size: 13.5px;
+                            display: flex;
+                            gap: 8px;
+                        }
+
+                            .small-action-btn {
+                                padding: 6px 2px;
+                                border-radius: 5px;
+                                transition: scale 0.3s, background-color 0.3s;
+                            }.small-action-btn:hover {
+                                scale: 1.02;
+                            }.small-action-btn.phone {
+                                color: black;
+                                text-align: center;
+                                width: 100px;
+                                background-color: #eab308;
+                            }.small-action-btn.phone:hover {
+                                background-color: #ca8a04;
+                            }.small-action-btn.phone.last-phone {
+                                background-color: #ba8002c9;
+                            }.small-action-btn.phone.last-phone:hover {
+                                background-color: #eab308;
+                            }.small-action-btn.message {
+                                text-align: center;
+                                width: 95px;
+                                background-color: #14b8a6;
+                            }.small-action-btn.message:hover {
+                                background-color: #0d9488;
+                            }.small-action-btn.message.last-message {
+                                background-color: #09645db6;
+                            }.small-action-btn.message.last-message:hover {
+                                background-color: #14b8a6;
+                            }
+                            
+                            .small-action-btn.copied {
+                                color: white;
+                                font-weight: 600;
+                                background-color: #94949499 !important;
+                                transition: scale 0.3s
+                            }
+
+                                .small-action-btn i {
+                                    opacity: 0.7;
+                                }
+
+                        /* Arrow for Each Bill Tab */
+                        .bill-tab-arrow-container {
+                            display: flex;
+                            width: 28px;
+                            height: 28px;
+                            margin-left: 8px;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: #35475be1;
+                            border-radius: 6px;
+                            transition: all 0.3s;
+                        }.bill-tab-header:hover .bill-tab-arrow-container {
+                            background-color: #3a4e65;
+                        }
+
+                            .bill-tab-arrow {
+                                transition: transform 0.3s;
+                            }
+
+                            .bill-tab.open .bill-tab-arrow {
+                                transform: rotate(90deg);
+                            }
+
+                    /* Individual Item information for Bill */
+                    .bill-tab-info {
+                        max-height: 0px;
+                        overflow: hidden;
+                        transition: all 0.3s ease-in-out;
+                    }
+
+                        /* First Bill Tab Divider */
+                        .bill-tab-divider {
+                            width: 100%;
+                            height: 1px;
+                            margin-bottom: 5px;
+                            background-color: #374151;
+                        }
+
+                        /* Each Item Container */
+                        .bill-info-item {
+                            padding: 0 20px;
+                        }.bill-info-item:last-child {
+                            padding-bottom: 10px;
+                        }
+
+                            /* Item Header */
+                            .bill-info-item-header {
+                                display: flex;
+                                flex: 1;
+                                font-size: 14px;
+                                font-weight: 500;
+                                margin-top: 8px;
+                                margin-bottom: 0;
+                            }
+
+                                /* Item Header Title */
+                                .bill-info-item-header-title {
+                                    flex: 1;
+                                }
+
+                                /* Total Item Amount */
+                                .bill-info-item-header-amount {
+                                    color: white;
+                                    font-weight: 600;
+                                    padding: 3px 9px;
+                                    background-color: #a6a6a675;
+                                    border-radius: 5px;
+                                }.bill-info-item-header-amount.positive {
+                                    color: #fca5a5;
+                                    background-color: #754c4c8c;
+                                }.bill-info-item-header-amount.negative {
+                                    color: #86efac;
+                                    background-color: #4477578f;
+                                }
+
+                            /* Given and Taken for each Item */
+                            .bill-info-item-taken,
+                            .bill-info-item-given {
+                                display: flex;
+                                flex: 1;
+                                font-size: 12px;
+                                font-style: italic;
+                                margin: 2px 0;
+                                padding: 0 10px;
+                                padding-left: 10px;
+                            }
+
+                                .bill-info-item-taken-quantity,
+                                .bill-info-item-given-quantity {
+                                    flex: 1;
+                                }
+
+                            .bill-info-item-taken {
+                                color: #fca5a5;
+                            }
+
+                            .bill-info-item-given {
+                                color: #86efac;
+                            }
+
+                            /* Divider Between Items */
+                            .bill-tab-info-divider {
+                                width: 100%;
+                                height: 1px;
+                                margin-top: 10px;
+                                background-color: #374151a5;
+                            }
+
+/* Hides elements when used */
+.hidden {
+    display: none;
+}
