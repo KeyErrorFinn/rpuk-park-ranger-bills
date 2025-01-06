@@ -24,10 +24,12 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
 - [About the Project](#about-the-project)
   - [There are two sections:](#there-are-two-sections)
   - [The helper works by doing this:](#the-helper-works-by-doing-this)
-  - [Website Version](#website-version)
+  - [Website Version (Using React)](#website-version-using-react)
     - [What it includes:](#what-it-includes)
     - [TO-DO:](#to-do)
   - [EXE Version](#exe-version)
+  - [OLD Website Version](#old-website-version)
+    - [What it includes:](#what-it-includes-1)
 
 
 ## About the Project
@@ -48,28 +50,30 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
 7) After generating with that input, the helper with provide a contact number for each person, along with a custom message to send to them that can include their name and bill
 
 
-### Website Version
-The Website Version can be found [here](https://keyerrorfinn.github.io/rpuk-park-ranger-bills/).
+### Website Version (Using React)
+The Website Version can be found [here](https://git.finnley.co.uk/rpuk-park-ranger-bills/).
 
 #### What it includes:
 - Left
-  - A small box for inputting the bill data (TOP)
-  - A small box for copying the generated bills (BOTTOM)
+  - A small box with two tabs (TOP):
+    -  Log Input tab: inputting the bill data and copying the output
+    -  Sheet Input tab: inputting the google sheet data (Name, Bill, Days active, Contact number)
+  - A small box for changing the custom message that gets generated for each person (BOTTOM)
 - Middle
   - A big box that displays each person with information such as:
     - Whether they are a Ranger
     - Name
     - Bill amount
-    - Dropdown of:
-      - Items taken/given total
-      - Item quantity
-      - Item cost total
     - *ONCE GIVEN SHEET INPUT AND GENERATED:*
       - Contact Number button that copies to clipboard
-      - Custom Message button that copies to clipboard 
-- Right
-  - A small box for inputting the google sheet data (Name, Bill, Days active, Contact number) (TOP)
-  - A small box for changing the custom message that gets generated for each person (BOTTOM)
+      - Custom Message button that copies to clipboard
+    - Dropdown of:
+      - Each Logged Item:
+        - Item Name
+        - Item Taken Quantity
+        - Item Given Quantity
+        - Item Net Quantity
+        - Item Net Cost
 
 **Each box also includes a tooltip icon that tells you what the box does and how to use it.**
 
@@ -87,8 +91,10 @@ The Website Version can be found [here](https://keyerrorfinn.github.io/rpuk-park
 - [x] <s>Redesign Website</s>
 - [x] <s>Copying Item Information should paste as: -5 | +3 | -2 - £10,000</s>
 - [x] <s>Add other features for Joe</s>
-- [x] <s>COMMENT CODE</s>
-- [ ] Add Error
+- [x] <s>Convert Website to React</s>
+- [ ] Convert regular CSS to SCSS
+- [ ] COMMENT CODE
+- [ ] Add Error logs
 - [ ] Add "Person not found" error to sheet input box
 - [ ] Make mini-game about... person
 - [ ] Make Website Design Responsive
@@ -100,3 +106,31 @@ The Website Version can be found [here](https://keyerrorfinn.github.io/rpuk-park
 The EXE version of the helper is made in python and then compiled using `python-to-exe`.
 
 In the release, you will see a zip files with EXE files and instructions, read that and it will help you generate the files needed for the program to work.
+
+### OLD Website Version
+> [!WARNING]
+> This version is no longer maintained, please use the New Website Version for updates.
+
+#### What it includes:
+- Left
+  - A small box with two tabs (TOP):
+    -  Log Input tab: inputting the bill data and copying the output
+    -  Sheet Input tab: inputting the google sheet data (Name, Bill, Days active, Contact number)
+  - A small box for changing the custom message that gets generated for each person (BOTTOM)
+- Middle
+  - A big box that displays each person with information such as:
+    - Whether they are a Ranger
+    - Name
+    - Bill amount
+    - *ONCE GIVEN SHEET INPUT AND GENERATED:*
+      - Contact Number button that copies to clipboard
+      - Custom Message button that copies to clipboard
+    - Dropdown of:
+      - Each Logged Item:
+        - Item Name
+        - Item Taken Quantity
+        - Item Given Quantity
+        - Item Net Quantity
+        - Item Net Cost
+
+**Each box also includes a tooltip icon that tells you what the box does and how to use it.**

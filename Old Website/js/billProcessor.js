@@ -467,7 +467,7 @@ logInputGenerateBtn.addEventListener("click", () => {
                             billInfoItemNetCost.classList.add("net-cost");
                             const itemNetCost = itemInfo["Taken"][1]+itemInfo["Given"][1];
                             billInfoItemNetCost.classList.add((itemNetCost > 0) ? "positive" : (itemNetCost < 0) ? "negative" : "neutral");
-                            billInfoItemNetCost.textContent = currencyFormat.format(itemInfo["Taken"][1]+itemInfo["Given"][1]);;
+                            billInfoItemNetCost.textContent = currencyFormat.format(itemNetCost);;
                             // Adds BILL INFO ITEM NET COST to BILL INFO ITEM STATS
                             billInfoItemStats.appendChild(billInfoItemNetCost);
 
