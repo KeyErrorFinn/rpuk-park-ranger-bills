@@ -1,0 +1,78 @@
+@use "BillTabHeader" as bill-tab-header;
+@use "BillTabInfo" as bill-tab-info;
+
+
+// VARIABLES
+// $bill-tab-BG-COLOUR: #263240;
+$tab-BG-COLOUR: #131920;
+
+$tab-hover-BOX-SHADOW: inset #06080a 0px 0px 9px 0px;
+
+
+@keyframes expand-line {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+
+@mixin main {
+    /* List of Bills container */
+    #list-of-bills {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 10px;
+        overflow-y: auto;
+        min-height: 0;
+        border-radius: 8px;
+        transition: padding-right 0.3;
+
+
+        .no-bills-message {
+            font-size: 20px;
+            font-weight: 500;
+            opacity: 0.5;
+            height: 100%;
+            text-align: center;
+            align-content: center;
+            margin-bottom: 45px;
+        }
+
+
+        /* Individual Bill Tab */
+        .bill-tab {
+            display: flex;
+            flex-direction: column;
+            background-color: $tab-BG-COLOUR;
+            border-radius: 8px;
+            transition: box-shadow 0.3s;
+
+
+            &:has(.bill-tab-header:hover):not(:has(.small-action-btn:hover)) {box-shadow: $tab-hover-BOX-SHADOW}
+
+
+            @include bill-tab-header.main;
+
+
+            @include bill-tab-info.main;
+
+
+            &.open {
+                .bill-tab-arrow {transform: rotate(90deg)}
+                .bill-tab-info {transition: all 0.3s ease-in-out, height 0.7s cubic-bezier(.43,2.01,.68,.64)}
+                .bill-tab-divider {animation: expand-line 0.5s ease-in-out}
+                
+                
+                .bill-tab-info-divider {
+                    width: 0%;
+                    animation: expand-line 0.5s ease-in-out;
+                    animation-fill-mode: forwards;
+                }
+            }
+        }
+    }
+}

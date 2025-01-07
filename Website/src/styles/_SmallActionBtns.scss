@@ -1,0 +1,96 @@
+// VARIABLES
+$btn-BG-COLOUR: #36c47d;
+$btn-hover-BG-COLOUR: #2fab6d;
+$btn-success-BG-COLOUR: #4ed55e;
+$btn-error-BG-COLOUR: #c43636;
+
+$secondary-btn-BG-COLOUR: #35475be1;
+$secondary-btn-hover-BG-COLOUR: #3a4e65;
+$secondary-btn-success-BG-COLOUR: #7f8b9a;
+$secondary-btn-error-BG-COLOUR: #26313e9b;
+
+
+@keyframes spin-360 {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+
+@mixin main {
+    /* Action Buttons */
+    .small-box-action-btns {
+        display: flex;
+        gap: 10px;
+
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 7px 14px;
+            border-radius: 6px;
+            background-color: $btn-BG-COLOUR;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s;
+
+
+            &:hover {
+                scale: 1.02;
+                background-color: $btn-hover-BG-COLOUR;
+            }
+
+
+            &.success {
+                scale: 1;
+                background-color: $btn-success-BG-COLOUR;
+                cursor: not-allowed;
+            }
+
+
+            &.error {
+                scale: 1;
+                background-color: $btn-error-BG-COLOUR;
+                cursor: not-allowed;
+            }
+
+
+            &.secondary {
+                justify-content: center;
+                padding: 7px 12px;
+                background-color: $secondary-btn-BG-COLOUR;
+
+
+                &:hover {background-color: $secondary-btn-hover-BG-COLOUR}
+
+
+                &.success {
+                    scale: 1;
+                    background-color: $secondary-btn-success-BG-COLOUR;
+                    cursor: not-allowed;
+                }
+
+
+                &.error {
+                    scale: 1;
+                    background-color: $secondary-btn-error-BG-COLOUR;
+                    cursor: not-allowed;
+                }
+
+
+                &.btn-grow {
+                    text-align: center;
+                    flex: 1;
+                }
+
+                svg.spin {
+                    animation: spin-360 0.5s ease-in-out; /* Adjust duration as needed */
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,98 @@
+// VARIABLES
+$tooltip-COLOUR: #5e5f63;
+$tooltip-BG: radial-gradient(circle, #caccddce 50%, transparent 50%);
+
+$tooltip-text-COLOUR: #d7d7d7;
+$tooltip-text-BG-COLOUR: #4e4e4e;
+$tooltip-text-BOX-SHADOW: $tooltip-text-BG-COLOUR 0px 0px 3px 2px;
+
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+
+
+    .help-tooltip {
+        position: relative;
+        display: flex;
+        font-size: 18px;
+        color: $tooltip-COLOUR;
+        background: $tooltip-BG;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-left: 2px;
+        transition: opacity 0.3s, box-shadow 0.3s;
+
+
+        /* Tooltip text */
+        + .help-tooltip-text {
+            z-index: 1;
+            top: -1px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0s 0.3s;
+            color: $tooltip-text-COLOUR;
+            background-color: $tooltip-text-BG-COLOUR;
+            box-shadow: $tooltip-text-BOX-SHADOW;
+            border-radius: 6px;
+            position: absolute;
+            width: max-content;
+            max-width: 300px;
+            padding: 7px;
+            cursor: initial;
+            font-size: 14px;
+            line-height: 14px;
+            font-weight: 400;
+            text-align: start;
+            text-shadow: none;
+            user-select: text;
+            left: 105%;
+            margin-left: 8px;
+
+
+            &::after {
+                right: 100%;
+                border-color: transparent $tooltip-text-BG-COLOUR transparent transparent;
+            }
+
+
+            &.small-help-tooltip-text-left {
+                left: unset;
+                margin-left: unset;
+                right: 105%;
+                margin-right: 8px;
+
+
+                &::after {
+                    right: unset;
+                    left: 100%;
+                    border-color: transparent transparent transparent $tooltip-text-BG-COLOUR;
+                }
+            }
+
+
+            b {
+                color: $tooltip-text-COLOUR;
+                text-decoration: underline;
+            }
+        }
+
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        &:hover + .help-tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+
+        + .help-tooltip-text::after {
+            content: " ";
+            position: absolute;
+            top: 10px;
+            margin-top: -5px;
+            border-width: 5px;
+            border-style: solid;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+@use "ListOfBills" as list-of-bills;
+
+
+// VARIABLES
+@use "GlobalVariables" as global-variables;
+
+$title-COLOUR: global-variables.$DEFAULT-TEXT-COLOUR;
+
+$title-current-step-TEXT-SHADOW: #dfdf49 0px 0px 5px;
+
+
+@mixin main {
+    // Big Box on Right
+    .right-box-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        height: 100%;
+        overflow: hidden;
+
+
+        .big-box {
+            gap: 8px;
+            overflow: hidden;
+
+
+            .big-box-title {
+                display: flex;
+                gap: 7px;
+                color: $title-COLOUR;
+                font-size: 25px;
+                font-weight: 600;
+                justify-content: center;
+                align-items: center;
+                transition: text-shadow 0.3s;
+
+
+                &.current-step {text-shadow: $title-current-step-TEXT-SHADOW}
+
+
+                .help-tooltip {
+                    font-size: 22px;
+
+
+                    + .help-tooltip-text {
+                        max-width: 329px;
+                        left: 105%;
+                        margin-left: 8px;
+                    }
+                }
+            }
+
+
+            @include list-of-bills.main;
+        }
+    }
+}

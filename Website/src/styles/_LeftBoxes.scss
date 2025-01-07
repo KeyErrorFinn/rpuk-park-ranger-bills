@@ -1,0 +1,153 @@
+@use "SmallActionBtns" as small-action-btns;
+
+
+// VARIABLES
+@use "GlobalVariables" as global-variables;
+
+$container-GAP: global-variables.$GAP-AROUND-CONTAINERS;
+
+$option-btn-COLOUR: #ababab;
+$option-btn-hover-COLOUR: global-variables.$DEFAULT-TEXT-COLOUR;
+$option-btn-hover-BG-COLOUR: #35475b65;
+$option-btn-active-COLOUR: global-variables.$DEFAULT-TEXT-COLOUR;
+$option-btn-active-BG-COLOUR: #35475be1;
+$option-btn-active-hover-BG-COLOUR: #3a4e65;
+
+$option-btn-unfocused-current-step-TEXT-SHADOW: #62dd33 0px 0px 6px;
+$option-btn-hover-current-step-BOX-SHADOW: #5bc730a0 0px 0px 6px;
+$option-btn-active-current-step-BOX-SHADOW: $option-btn-unfocused-current-step-TEXT-SHADOW;
+
+$option-btn-unfocused-current-step-tooltip-BOX-SHADOW: $option-btn-hover-current-step-BOX-SHADOW;
+
+$title-COLOUR: global-variables.$DEFAULT-TEXT-COLOUR;
+
+$title-current-step-TEXT-SHADOW: $option-btn-unfocused-current-step-TEXT-SHADOW;
+
+$text-area-COLOUR: #cfcfcf;
+// $text-area-BG-COLOUR: #111827;
+$text-area-BG-COLOUR: #263240;
+$text-area-BORDER: solid #303f50 1px;
+$text-area-placeholder-COLOUR: #5c5c5cba;
+$text-area-focus-BORDER: solid #36c47d 1px;
+
+
+@mixin main {
+    /* Log Input box and Sample Message Box */
+    .left-boxes-container {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        gap: $container-GAP;
+        height: 100%;
+
+
+        /* Tabs for Top Left Box */
+        .box-option-btns-container {
+            display: flex;
+            gap: 10px;
+
+
+            .box-option-btn {
+                display: flex;
+                align-items: center;
+                gap: 6px;            
+                color: $option-btn-COLOUR;
+                font-weight: 600;
+                padding: 8px 15px;
+                border-radius: 8px;
+                cursor: pointer;
+                user-select: none;
+                transition: all 0.3s;
+
+
+                &:hover {
+                    color: $option-btn-hover-COLOUR;
+                    scale: 1.01;
+                    background-color: $option-btn-hover-BG-COLOUR;
+                }
+
+
+                &.active {
+                    color: $option-btn-active-COLOUR;
+                    background-color: $option-btn-active-BG-COLOUR;
+
+
+                    &:hover {
+                        scale: 1.01;
+                        background-color: $option-btn-active-hover-BG-COLOUR;
+                    }
+                }
+
+
+                &.current-step {
+                    &:not(:hover):not(.active) {
+                        text-shadow: $option-btn-unfocused-current-step-TEXT-SHADOW;
+
+
+                        .help-tooltip {box-shadow: $option-btn-unfocused-current-step-tooltip-BOX-SHADOW}
+                    }
+
+
+                    &:hover {box-shadow: $option-btn-hover-current-step-BOX-SHADOW}
+                    &.active {box-shadow: $option-btn-active-current-step-BOX-SHADOW}
+                }
+            }
+
+
+            #log-input-tab-btn:has(.help-tooltip:hover) + #sheet-input-tab-btn .help-tooltip {opacity: 0}
+        }
+
+
+        /* Content for Top Left small box */
+        .small-box-content-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 10px;
+        }
+
+
+        /* Titles for small boxes */
+        .small-box-title {
+            display: flex;
+            gap: 5px;
+            color: $title-COLOUR;
+            font-size: 20px;
+            font-weight: 600;
+            align-items: center;
+
+
+            &.current-step {text-shadow: $title-current-step-TEXT-SHADOW}
+        }
+
+
+        .small-box-text-area {
+            flex: 1;
+            color: $text-area-COLOUR;
+            font-size: 11px;
+            padding: 4px 7px;
+            background: $text-area-BG-COLOUR;
+            border: $text-area-BORDER;
+            border-radius: 10px;
+            resize: none;
+
+            
+            &::placeholder {
+                font-size: 16px;
+                color: $text-area-placeholder-COLOUR;
+            }
+
+
+            &:focus {
+                outline: none;
+                border: $text-area-focus-BORDER !important;
+            }
+        }
+
+
+        #sample-message-text-area {font-size: 18px}
+
+
+        @include small-action-btns.main;
+    }
+}

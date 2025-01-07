@@ -1,0 +1,130 @@
+@use "Tooltips";
+@use "RightBox" as right-box-container;
+@use "LeftBoxes" as left-boxes-container;
+
+
+// VARIABLES
+@use "GlobalVariables" as global-variables;
+
+$scrollbar-track-BG-COLOUR: #263240;
+
+// $scrollbar-thumb-BG: linear-gradient(to bottom, #b9b900 -10%, #844200);
+$scrollbar-thumb-BG-COLOUR: #0f141a;
+$scrollbar-thumb-hover-BG-COLOUR: #0c1015;
+// $scrollbar-thumb-active-BG: linear-gradient(to bottom, #E6E600 -10%, #B95C00);
+$scrollbar-thumb-active-BG-COLOUR: #0a0d11;
+
+// $main-BG-COLOUR: #111827;
+$main-BG-COLOUR: #131920;
+
+$container-COLOUR: global-variables.$DEFAULT-TEXT-COLOUR;
+
+$container-MARGIN: global-variables.$GAP-AROUND-CONTAINERS;
+$container-GAP: global-variables.$GAP-AROUND-CONTAINERS;
+$container-HEIGHT: calc(100% - global-variables.$GAP-AROUND-CONTAINERS * 2);
+
+// $box-BG-COLOUR: #1F2937;
+$box-BG-COLOUR: #1b232d;
+$box-BORDER: solid #263240 1px;
+
+
+@font-face {
+    font-family: 'Inter var';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: 'Regular';
+    src: url('./fonts/Inter-roman.var.woff2?v=3.18') format('woff2');
+}
+
+// @font-face {
+//     font-family: 'Inter var';
+//     font-weight: 100 900;
+//     font-display: swap;
+//     font-style: italic;
+//     font-named-instance: 'Italic';
+//     src: url('./fonts/Inter-italic.var.woff2?v=3.18') format('woff2');
+// }
+
+
+* {
+    font-family: "Inter var",sans-serif;
+}
+
+
+.custom-scroll-bar {
+    &::-webkit-scrollbar {
+        width: 12px;
+        cursor: pointer;
+    }
+
+
+    &::-webkit-scrollbar-track {
+        margin: 3px 0;
+        background-color: $scrollbar-track-BG-COLOUR;
+        border-radius: 20px;
+        cursor:auto;
+    }
+
+
+    &::-webkit-scrollbar-thumb {
+        // background: $scrollbar-thumb-BG;
+        background-color: $scrollbar-thumb-BG-COLOUR;
+        border-radius: 20px;
+        cursor:auto;
+
+
+        &:hover {background-color: $scrollbar-thumb-hover-BG-COLOUR}
+
+
+        &:active {
+            // background: $scrollbar-thumb-active-BG;
+            background-color: $scrollbar-thumb-active-BG-COLOUR;
+        }
+    }
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+body {
+    background-color: $main-BG-COLOUR;
+}
+
+
+.main-container {
+    display: flex;
+    flex: 1;
+    color: $container-COLOUR;
+    margin: $container-MARGIN;
+    gap: $container-GAP;
+    height: $container-HEIGHT;
+
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 15px;
+        padding: 15px;
+        background-color: $box-BG-COLOUR;
+        border: var(--box-border);
+        border-radius: 10px;
+    }
+
+
+    @include left-boxes-container.main;
+
+
+    @include right-box-container.main;
+}
+
+
+/* Hides elements when used */
+.hidden {display: none !important}

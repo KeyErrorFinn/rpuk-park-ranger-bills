@@ -1,0 +1,159 @@
+// VARIABLES
+@use "GlobalVariables" as global-variables;
+
+$DEFAULT-TEXT-COLOUR: white;
+
+$divider-BG-COLOUR: #374151;
+
+$item-stat-taken-COLOUR: #fca5a5;
+$item-stat-given-COLOUR: #86efac;
+$item-stat-DEFAULT-BG-COLOUR: #a6a6a621;
+
+$item-stat-net-COLOUR: global-variables.$DEFAULT-TEXT-COLOUR;
+$item-stat-net-BG-COLOUR: #a6a6a650;
+
+$item-stat-net-cost-COLOUR: $DEFAULT-TEXT-COLOUR;
+$item-stat-net-cost-BG-COLOUR: #a6a6a675;
+$item-stat-net-cost-positive-COLOUR: $item-stat-taken-COLOUR;
+$item-stat-net-cost-positive-BG-COLOUR: #754c4c8c;
+$item-stat-net-cost-negative-COLOUR: $item-stat-given-COLOUR;
+$item-stat-net-cost-negative-BG-COLOUR: #4477578f;
+
+$info-divider-BG-COLOUR: #374151a5;
+
+
+@mixin main {
+    // Individual Item information for Bill
+    .bill-tab-info {
+        display: flex;
+        flex-direction: column;
+        height: 0px;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+
+
+        // First Bill Tab Divider
+        .bill-tab-divider {
+            width: 100%;
+            height: 1px;
+            min-height: 1px;
+            align-self: center;
+            margin-bottom: 5px;
+            background-color: $divider-BG-COLOUR;
+        }
+        
+
+
+        // Each Item Container
+        .bill-info-item {
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+
+
+            &:last-child {padding-bottom: 3px}
+
+
+            .bill-info-item-info {
+                display: inline-block;
+                margin: 7px 0;
+                font-size: 14px;
+                width: 100%;
+
+
+                .bill-info-item-title {
+                    display: inline;
+                    font-weight: 500;
+                }
+
+
+                .bill-info-item-stats {
+                    border-radius: 5px;
+                    overflow: hidden;
+                    float: right;
+
+
+                    .bill-info-item-invisible-divider {
+                        display: inline-flex;
+                        width: 0;
+                        color: transparent;
+                        background-color: transparent;
+                        white-space: pre;
+
+
+                        &::selection {
+                            color: transparent;
+                            background-color: transparent;
+                        }
+                    }
+
+
+                    .bill-info-item-stat {
+                        display: inline-block;
+                        padding: 3px 7px;
+                        background-color: $item-stat-DEFAULT-BG-COLOUR;
+
+
+                        &:first-child{padding-left: 9px}
+                        &:last-child{padding-right: 9px}
+                        
+                        
+                        &.taken {
+                            color: $item-stat-taken-COLOUR;
+
+
+                            &:has(~.bill-info-item-stat.given) {
+                                padding-right: 4px;
+                            }
+
+
+                            ~ .bill-info-item-stat.given {
+                                padding-left: 4px;
+                            }
+                        }
+
+
+                        &.given {color: $item-stat-given-COLOUR}
+
+
+                        &.net {
+                            color: $item-stat-net-COLOUR;
+                            background-color: $item-stat-net-BG-COLOUR;
+                        }
+
+
+                        &.net-cost {
+                            color: $item-stat-net-cost-COLOUR;
+                            width: 66px;
+                            text-align: right;
+                            font-weight: 500;
+                            background-color: $item-stat-net-cost-BG-COLOUR;
+
+
+                            &.positive {
+                                color: $item-stat-net-cost-positive-COLOUR;
+                                background-color: $item-stat-net-cost-positive-BG-COLOUR;
+                            }
+
+
+                            &.negative {
+                                color: $item-stat-net-cost-negative-COLOUR;
+                                background-color: $item-stat-net-cost-negative-BG-COLOUR;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            // Divider Between Items
+            .bill-tab-info-divider {
+                width: 100%;
+                height: 1px;
+                min-height: 1px;
+                align-self: center;
+                background-color: $info-divider-BG-COLOUR;
+            }
+        }
+    }
+}
