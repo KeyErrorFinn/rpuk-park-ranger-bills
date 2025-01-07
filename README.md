@@ -9,9 +9,19 @@
 </p>
 <p align="center">
   <a href="#"><img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-121013?logo=github&logoColor=white" /></a>
+  <a href="#"><img alt="GitHub Actions" src="https://img.shields.io/badge/github%20actions-%232671E5.svg?logo=githubactions&logoColor=white" /></a>
+</p>
+<p align="center">
+  <a href="#"><img alt="NPM" src="https://img.shields.io/badge/NPM-%23CB3837.svg?logo=npm&logoColor=white" /></a>
+  <a href="#"><img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?logo=react&logoColor=%2361DAFB" /></a>
+  <a href="#"><img alt="SCSS" src="https://img.shields.io/badge/SASS-hotpink.svg?logo=SASS&logoColor=white" /></a>
+</p>
+<p align="center">
   <a href="#"><img alt="HTML" src="https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white" /></a>
   <a href="#"><img alt="CSS" src="https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff" /></a>
   <a href="#"><img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000" /></a>
+</p>
+<p align="center">
   <a href="#"><img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff" /></a>
 </p>
 
@@ -92,7 +102,7 @@ The Website Version can be found [here](https://git.finnley.co.uk/rpuk-park-rang
 - [x] <s>Copying Item Information should paste as: -5 | +3 | -2 - £10,000</s>
 - [x] <s>Add other features for Joe</s>
 - [x] <s>Convert Website to React</s>
-- [ ] Convert regular CSS to SCSS
+- [x] <s>Convert regular CSS to SCSS</s>
 - [ ] COMMENT CODE
 - [ ] Add Error logs
 - [ ] Add "Person not found" error to sheet input box
