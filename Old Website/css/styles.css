@@ -58,7 +58,7 @@
     --bill-tab-background-colour: #131920;
     --big-box-title-current-step-text-shadow: #dfdf49 0px 0px 5px;
 
-    --tooltip-text-background-opaque: rgba(59, 59, 59, 0.76);
+    --tooltip-text-background-opaque: #3b3b3bc2;
     --tooltip-text-background: rgb(78, 78, 78);
     --tooltip-text-color: #d7d7d7;
 }

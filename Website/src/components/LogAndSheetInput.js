@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import TooltipIcon, { logInputTooltipText, sheetInputTooltipText, sheetOutputTooltipText } from "./Tooltips";
-import { processBills } from "../utils/billProcessor"; // Import the function
-// import { addTestData } from "../utils/addTestData"; // Import the function
+import { processBills } from "../utils/billProcessor";
+import { CClean } from '../utils/cleanClassNames';
+// import { addTestData } from "../utils/addTestData"; // Comment on Build and Push
 
 const LogAndSheetInput = ({ onGenerateBills, onGenerateBillButtons, currentStep, setCurrentStep }) => {
     const [activeTab, setActiveTab] = useState("log");
@@ -17,6 +18,7 @@ const LogAndSheetInput = ({ onGenerateBills, onGenerateBillButtons, currentStep,
     const [sheetInputGenerateBtnStatus, setSheetInputGenerateBtnStatus] = useState("");
 
 
+    // Comment on Build and Push
     // useEffect(() => {
     //     addTestData();
     // }, []);
@@ -124,11 +126,11 @@ const LogAndSheetInput = ({ onGenerateBills, onGenerateBillButtons, currentStep,
         <div className="top-box box">
             <div className="box-option-btns-container">
                 <div 
-                    className={`
+                    className={CClean(`
                         box-option-btn 
                         ${activeTab === "log" ? "active" : ""} 
                         ${currentStep === 1 ? "current-step" : ""}
-                    `}
+                    `)}
                     id="log-input-tab-btn"
                     onClick={() => setActiveTab("log")}
                 >
@@ -136,11 +138,11 @@ const LogAndSheetInput = ({ onGenerateBills, onGenerateBillButtons, currentStep,
                     <TooltipIcon tooltipText={logInputTooltipText} />
                 </div>
                 <div 
-                    className={`
+                    className={CClean(`
                         box-option-btn
                         ${activeTab === "sheet" ? "active" : ""}
                         ${currentStep === 2 ? "current-step" : ""}
-                    `}
+                    `)}
                     id="sheet-input-tab-btn"
                     onClick={() => setActiveTab("sheet")}
                 >

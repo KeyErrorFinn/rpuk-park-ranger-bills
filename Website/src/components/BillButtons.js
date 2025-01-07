@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { CClean } from '../utils/cleanClassNames';
 
 export const PhoneButton = ({ number, lastNumberState }) => {
     const [lastNumber, setLastNumber] = lastNumberState;
@@ -38,13 +39,16 @@ export const PhoneButton = ({ number, lastNumberState }) => {
     }
 
     return (
-        <div className={`
-            small-action-btn phone
-            ${(lastNumber === number) ? "last-phone" : ""}
-            ${(numberBtnText === "COPIED") ? "copied" : ""}
-        `} style={{ scale: btnScale}}>
+        <div className={CClean(`
+                small-action-btn phone
+                ${(lastNumber === number) ? "last-phone" : ""}
+                ${(numberBtnText === "COPIED") ? "copied" : ""}
+            `)} 
+            onClick={copyNumber}
+            style={{ scale: btnScale}}
+        >
             { (numberBtnText === number ) && (<FontAwesomeIcon icon={faPhone} />) }
-            <div className="phone-text" onClick={copyNumber}>{numberBtnText}</div>
+            <div className="phone-text">{numberBtnText}</div>
         </div>
     );
 }
@@ -91,13 +95,16 @@ export const MessageButton = ({ name, bill, sampleMessage, lastMessageState }) =
     }
 
     return (
-        <div className={`
-            small-action-btn message
-            ${(lastMessage === message) ? "last-message" : ""}
-            ${(messageBtnText === "COPIED") ? "copied" : ""}
-        `} style={{ scale: btnScale}}>
+        <div className={CClean(`
+                small-action-btn message
+                ${(lastMessage === message) ? "last-message" : ""}
+                ${(messageBtnText === "COPIED") ? "copied" : ""}
+            `)}
+            style={{ scale: btnScale}}
+            onClick={copyMessage}
+        >
             { (messageBtnText === "Message" ) && (<FontAwesomeIcon icon={faEnvelope} />) }
-            <div className="message-text" onClick={copyMessage}>{messageBtnText}</div>
+            <div className="message-text">{messageBtnText}</div>
         </div>
     );
 }

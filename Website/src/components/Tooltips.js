@@ -4,11 +4,11 @@ import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 
 
 //// Reusable TooltipIcon component \\\\
-const TooltipIcon = ({ tooltipText }) => {
+const TooltipIcon = ({ tooltipText, addSmallLeftClass = false }) => {
     return (
         <div className="tooltip-container">
             <FontAwesomeIcon icon={faCircleQuestion} className="help-tooltip" />
-            <span className="help-tooltip-text small-help-tooltip-text-right">
+            <span className={`help-tooltip-text ${ addSmallLeftClass && "small-help-tooltip-text-left"}`}>
                 {tooltipText}
             </span>
         </div>
