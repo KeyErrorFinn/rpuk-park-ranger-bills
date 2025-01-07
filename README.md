@@ -32,7 +32,7 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
 - [About the Project](#about-the-project)
-  - [There are two sections:](#there-are-two-sections)
+  - [There are three sections:](#there-are-three-sections)
   - [The helper works by doing this:](#the-helper-works-by-doing-this)
   - [Website Version (Using React)](#website-version-using-react)
     - [What it includes:](#what-it-includes)
@@ -44,9 +44,10 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
 
 ## About the Project
 
-### There are two sections:
-1) **The Website Version** ([LINK](https://keyerrorfinn.github.io/rpuk-park-ranger-bills/))
+### There are three sections:
+1) **The Website Version (React)** ([LINK](https://git.finnley.co.uk/rpuk-park-ranger-bills/))
 2) **And the EXE Version**
+3) **The Old Website Version**
 
 ### The helper works by doing this:
 1) A High rank uses the in-game computer to look at the bills log
