@@ -25,7 +25,8 @@ $container-HEIGHT: calc(100% - global-variables.$GAP-AROUND-CONTAINERS * 2);
 
 // $box-BG-COLOUR: #1F2937;
 $box-BG-COLOUR: #1b232d;
-$box-BORDER: solid #263240 1px;
+// $box-BORDER: solid #263240 1px;
+$box-BORDER: solid #303f50 1px;
 
 
 @font-face {
@@ -114,7 +115,7 @@ body {
         gap: 15px;
         padding: 15px;
         background-color: $box-BG-COLOUR;
-        border: var(--box-border);
+        border: $box-BORDER;
         border-radius: 10px;
     }
 
