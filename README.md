@@ -29,7 +29,9 @@
 This project is for helping the **RPUK SA Park Rangers** with their bills system to help efficiently work out the bills and save time.
 
 **RPUK** = GTA V FiveM Roleplay Server [ROLEPLAY UK](https://www.roleplay.co.uk)
+
 ## Table of Contents
+
 - [Table of Contents](#table-of-contents)
 - [About the Project](#about-the-project)
   - [There are three sections:](#there-are-three-sections)
@@ -45,11 +47,13 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
 ## About the Project
 
 ### There are three sections:
+
 1) **The Website Version (React)** ([LINK](https://git.finnley.co.uk/rpuk-park-ranger-bills/))
 2) **And the EXE Version**
 3) **The Old Website Version**
 
 ### The helper works by doing this:
+
 1) A High rank uses the in-game computer to look at the bills log
 2) They select all of the text in the bills log and either:
     1) Puts each page into a text file and then copy the entire text file
@@ -62,13 +66,15 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
 
 
 ### Website Version (Using React)
+
 The Website Version can be found [here](https://git.finnley.co.uk/rpuk-park-ranger-bills/).
 
 #### What it includes:
+
 - Left
   - A small box with two tabs (TOP):
-    -  Log Input tab: inputting the bill data and copying the output
-    -  Sheet Input tab: inputting the google sheet data (Name, Bill, Days active, Contact number)
+    - Log Input tab: inputting the bill data and copying the output
+    - Sheet Input tab: inputting the google sheet data (Name, Bill, Days active, Contact number)
   - A small box for changing the custom message that gets generated for each person (BOTTOM)
 - Middle
   - A big box that displays each person with information such as:
@@ -89,6 +95,7 @@ The Website Version can be found [here](https://git.finnley.co.uk/rpuk-park-rang
 **Each box also includes a tooltip icon that tells you what the box does and how to use it.**
 
 #### TO-DO:
+
 - [x] <s>Create Program</s>
 - [x] <s>Convert to static website</s>
 - [x] <s>Add individual item bill costs in dropdown for each person</s>
@@ -111,6 +118,7 @@ The Website Version can be found [here](https://git.finnley.co.uk/rpuk-park-rang
 - [ ] Make Website Design Responsive
 
 ### EXE Version
+
 > [!WARNING]
 > This version is no longer maintained, please use the Website Version for updates.
 
@@ -119,14 +127,16 @@ The EXE version of the helper is made in python and then compiled using `python-
 In the release, you will see a zip files with EXE files and instructions, read that and it will help you generate the files needed for the program to work.
 
 ### OLD Website Version
+
 > [!WARNING]
 > This version is no longer maintained, please use the New Website Version for updates.
 
 #### What it includes:
+
 - Left
   - A small box with two tabs (TOP):
-    -  Log Input tab: inputting the bill data and copying the output
-    -  Sheet Input tab: inputting the google sheet data (Name, Bill, Days active, Contact number)
+    - Log Input tab: inputting the bill data and copying the output
+    - Sheet Input tab: inputting the google sheet data (Name, Bill, Days active, Contact number)
   - A small box for changing the custom message that gets generated for each person (BOTTOM)
 - Middle
   - A big box that displays each person with information such as:

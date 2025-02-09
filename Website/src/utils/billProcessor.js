@@ -1,6 +1,6 @@
 //// BILL PROCESSOR \\\\
 
-export const processBills = (logInputGenerateBtn, hunterMultiplier = false, consoleLogBills = false) => {
+export const processBills = (logInputGenerateBtn, hunterMultiplier = true, consoleLogBills = false) => {
 
     //// ERROR HANDLERS
     // Handles Button Error Showing
