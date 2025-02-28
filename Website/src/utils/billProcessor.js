@@ -20,7 +20,7 @@ export const processBills = (logInputGenerateBtn, hunterMultiplier = true, conso
     // '-> ['Luke Richardson', '2000', '.308 Winchester', 20, false]
 
     // List of all ranks to remove in name
-    const ranks = ["Hunter", "Trainee Ranger", "Park Ranger", "Senior Ranger", "Deputy Ranger", "Head Ranger"];
+    const ranks = ["Hunter", "Trainee Ranger", "Park Ranger", "Senior Ranger", "Internal Affairs", "Deputy Ranger", "Head Ranger"];
 
     // Empty Bill List to add formatted bills
     const billList = [];
@@ -29,7 +29,7 @@ export const processBills = (logInputGenerateBtn, hunterMultiplier = true, conso
     const lines = logInputTextAreaText.split("\n");
     for (const line of lines) {
         // Skips lines with column titles
-        if (line.includes("Reason") && line.includes("Quantity")) continue;
+        if ((line.includes("Item Name") && line.includes("Quantity")) || !line) continue;
         
         // Splits data into 5 variables and keeps the first 3 variables
         // e.g. ['Hunter Luke Richardson', '- 20 (£2000)', '.308 Winchester']
@@ -51,6 +51,9 @@ export const processBills = (logInputGenerateBtn, hunterMultiplier = true, conso
                 }
             }
         });
+
+        console.log(datalist)
+        console.log("\n")
 
         // Gets the item count from the amount variable and pushes it to datalist
         // e.g. "- 20 (£2000)" -> 20
@@ -86,6 +89,8 @@ export const processBills = (logInputGenerateBtn, hunterMultiplier = true, conso
         // Adds the attribute about if the person is a ranger or not
         // e.g. ['Luke Richardson', '2000', '.308 Winchester', 20, false]
         datalist.push(isRanger);
+
+        console.log(datalist)
 
         // Adds cleaned data to Bill List
         // e.g. [
