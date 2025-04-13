@@ -111,7 +111,9 @@ const LogAndSheetInput = ({ onGenerateBills, onGenerateBillButtons, currentStep,
             // e.g. ['Aaron Gorton', '£9,200', '304', '352-2053']
             const datalist = line.trim().split("\t");
             let [name, bill, , number] = datalist;
-            billContacts.push({Name: name, Bill: bill, Number: number});
+            if (name !== "Hunting Shack") {
+                billContacts.push({Name: name, Bill: bill, Number: number});
+            }
         });
 
         onGenerateBillButtons([billContacts, sampleMessageText]);

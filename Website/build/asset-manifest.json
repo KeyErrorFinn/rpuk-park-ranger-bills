@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/rpuk-park-ranger-bills/static/css/main.85bb257a.css",
-    "main.js": "/rpuk-park-ranger-bills/static/js/main.b17c30f5.js",
+    "main.css": "/rpuk-park-ranger-bills/static/css/main.cf18c7f0.css",
+    "main.js": "/rpuk-park-ranger-bills/static/js/main.88c48ae2.js",
     "static/media/Inter-roman.var.woff2?v=3.18": "/rpuk-park-ranger-bills/static/media/Inter-roman.var.b65534c5223684261945.woff2",
     "index.html": "/rpuk-park-ranger-bills/index.html"
   },
   "entrypoints": [
-    "static/css/main.85bb257a.css",
-    "static/js/main.b17c30f5.js"
+    "static/css/main.cf18c7f0.css",
+    "static/js/main.88c48ae2.js"
   ]
 }

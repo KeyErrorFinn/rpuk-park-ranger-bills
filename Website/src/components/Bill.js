@@ -14,9 +14,15 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
     const personName = person["Name"];
     const personBill = person["Bill"];
     const personRangerStatus = person["IsRanger"];
+    const huntingShackStatus = personName === "Hunting Shack";
     const personItems = person["Items"];
 
-    const formattedPersonBill = currencyFormat.format(personBill);
+    let formattedPersonBill;
+    if (huntingShackStatus) {
+        formattedPersonBill = currencyFormat.format(personBill * -1);
+    } else {
+        formattedPersonBill = currencyFormat.format(personBill);
+    }
 
     const personNameAndBill = `${personName} - ${formattedPersonBill}`;
 
@@ -94,8 +100,13 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
         <div className={`bill-tab ${billTabOpen ? "open" : ""}`} name-and-bill={personNameAndBill}>
             <div className="bill-tab-header" onClick={toggleBill}>
                 <div className="bill-tab-person-info">
-                    { personRangerStatus && (<div className="bill-tab-ranger-tag">RANGER</div>)}
-                    <div className="name-and-bill">{personNameAndBill}</div>
+                    { personRangerStatus && (<div className="bill-tab-ranger-tag">RANGER</div>) }
+                    { huntingShackStatus ? (
+                        <>
+                            <div className="bill-tab-hunting-shack-tag">HUNTING SHACK EARNINGS</div>
+                            <div className="name-and-bill">{formattedPersonBill}</div>
+                        </>
+                    ) : (<div className="name-and-bill">{personNameAndBill}</div>) }
                 </div>
                 <div className="bill-btns">
                 { contactInfo && (
@@ -130,7 +141,12 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
                 const netQuantity = takenQuantity - givenQuantity;
                 const netCost = itemInfo["Taken"][1]+itemInfo["Given"][1];
 
-                const formattedNetCost = currencyFormat.format(netCost);
+                let formattedNetCost;
+                if (huntingShackStatus) {
+                    formattedNetCost = currencyFormat.format(netCost * -1);
+                } else {
+                    formattedNetCost = currencyFormat.format(netCost);
+                }
 
                 const isLastItem = index === Object.entries(personItems).length - 1;
                 

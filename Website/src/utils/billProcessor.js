@@ -52,9 +52,6 @@ export const processBills = (logInputGenerateBtn, hunterMultiplier = true, conso
             }
         });
 
-        console.log(datalist)
-        console.log("\n")
-
         // Gets the item count from the amount variable and pushes it to datalist
         // e.g. "- 20 (£2000)" -> 20
         const itemCount = parseInt(amount.slice(1, amount.indexOf("(")).replace(" ", ""), 10);
@@ -84,13 +81,23 @@ export const processBills = (logInputGenerateBtn, hunterMultiplier = true, conso
             }
         }
 
+
         datalist[2] = item.replace("SmartPhone", "Smart Phone");
+        
+        if (item.includes("Photo")) {  // || name.includes("Anonymous Citizen")
+            if (!name.includes("Anonymous Citizen")) {
+                datalist[2] = "Photography Job";
+            }
+            datalist[0] = "Hunting Shack";
+        } else if (name.includes("Anonymous Citizen")) {
+            datalist[0] = "Hunting Shack";
+        }
+
 
         // Adds the attribute about if the person is a ranger or not
         // e.g. ['Luke Richardson', '2000', '.308 Winchester', 20, false]
         datalist.push(isRanger);
 
-        console.log(datalist)
 
         // Adds cleaned data to Bill List
         // e.g. [
@@ -155,18 +162,32 @@ export const processBills = (logInputGenerateBtn, hunterMultiplier = true, conso
     // Adds only people with a Bill over 0 to the Temp Separate Bills Array
     const tempSeparateBills = {};
     for (const person in separateBills) {
-        if (separateBills[person]["Bill"] > 0) {
+        if (separateBills[person]["Bill"] > 0 || person === "Hunting Shack") {
+            // Adds person to Temp Separate Bills Array
             tempSeparateBills[person] = separateBills[person];
         }
     }
 
 
     //// SORTS BILLS
-    // Sorts the Temp Separate Bills Array by the person name and stores in Sorted Separate Bills Array
-    const sortedSeparateBills = Object.keys(tempSeparateBills).sort().reduce((acc, key) => {
-        acc[key] = tempSeparateBills[key];
-        return acc;
-    }, {});
+    // Moves "Anonymous Citizen" to the top and sorts the rest by person name
+    const sortedSeparateBills = Object.keys(tempSeparateBills)
+        .sort((a, b) => {
+            if (a === "Anonymous Citizen") return -1;
+            if (b === "Anonymous Citizen") return 1;
+            return a.localeCompare(b);
+        })
+        .reduce((acc, key) => {
+            acc[key] = tempSeparateBills[key];
+            return acc;
+        }, {});
+
+    // //// SORTS BILLS
+    // // Sorts the Temp Separate Bills Array by the person name and stores in Sorted Separate Bills Array
+    // const sortedSeparateBills = Object.keys(tempSeparateBills).sort().reduce((acc, key) => {
+    //     acc[key] = tempSeparateBills[key];
+    //     return acc;
+    // }, {});
 
 
     //// OUTPUTS EACH PERSON'S FINAL BILL IF ENABLED

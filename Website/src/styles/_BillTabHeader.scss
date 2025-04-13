@@ -3,6 +3,8 @@
 
 $ranger-tag-COLOUR: #56d797;
 $ranger-tag-BG-COLOUR: #25433494;
+$hunting-shack-tag-COLOUR: #d7b956;
+$hunting-shack-tag-BG-COLOUR: #43382594;
 
 $phone-btn-COLOUR: black;
 $phone-btn-BG-COLOUR: #eab308;
@@ -47,6 +49,14 @@ $arrow-container-hover-BG-COLOUR: #3a4e65;
                 color: $ranger-tag-COLOUR;
                 padding: 4px 8px;
                 background-color: $ranger-tag-BG-COLOUR;
+                border-radius: 5px;
+            }
+
+            .bill-tab-hunting-shack-tag {
+                font-size: 12px;
+                color: $hunting-shack-tag-COLOUR;
+                padding: 4px 8px;
+                background-color: $hunting-shack-tag-BG-COLOUR;
                 border-radius: 5px;
             }
         }
