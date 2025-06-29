@@ -168,19 +168,24 @@ export const processBills = (logInputGenerateBtn, hunterMultiplier = true, conso
         }
     }
 
+    console.log(tempSeparateBills);
+
 
     //// SORTS BILLS
     // Moves "Anonymous Citizen" to the top and sorts the rest by person name
     const sortedSeparateBills = Object.keys(tempSeparateBills)
         .sort((a, b) => {
-            if (a === "Anonymous Citizen") return -1;
-            if (b === "Anonymous Citizen") return 1;
+            if (a === "Hunting Shack") return -1;
+            if (b === "Hunting Shack") return 1;
             return a.localeCompare(b);
         })
         .reduce((acc, key) => {
             acc[key] = tempSeparateBills[key];
             return acc;
         }, {});
+
+    console.log(sortedSeparateBills);
+
 
     // //// SORTS BILLS
     // // Sorts the Temp Separate Bills Array by the person name and stores in Sorted Separate Bills Array

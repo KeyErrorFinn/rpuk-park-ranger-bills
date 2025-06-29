@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { PhoneButton, MessageButton } from './BillButtons';
 
-const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, sampleMessage, lastMessageState, lastNumberState, delay }) => {
+const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, sampleMessage, lastMessageState, lastNumberState, allBillTabOpen, delay }) => {
     const [billTabOpen, setBillTabOpen] = useState(false);
     const [billTabHeight, setBillTabHeight] = useState({});
-    const [billTabInfoElement, setBillTabInfoElement] = useState(document.querySelector('.bill-tab-info'));
+    const billTabInfoRef = useRef(null);
     const [showPhoneButton, setShowPhoneButton] = useState(false);
     const [showMessageButton, setShowMessageButton] = useState(false);
     const isFirstRender = useRef(true); // Ref to track initial render
@@ -34,11 +34,13 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
             return;
         }
 
+        if (!billTabInfoRef.current) return;
+
         // Gets the List of Bills
         const listOfBills = document.getElementById("list-of-bills");
 
         // Gets the Height variables from Bill Tab Info Scroll Height
-        const billTabInfoScrollHeight = billTabInfoElement.scrollHeight;
+        const billTabInfoScrollHeight = billTabInfoRef.current.scrollHeight;
         const fullHeight = billTabInfoScrollHeight + 5;
         const overFullHeight = billTabInfoScrollHeight + 20;
 
@@ -65,7 +67,7 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
                 clearTimeout(removePaddingTimeout);
             };
         }
-    }, [billTabOpen, billTabInfoElement, setListOfBillsPadding]);
+    }, [billTabOpen, setListOfBillsPadding]);
 
 
     useEffect(() => {
@@ -88,10 +90,14 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
         };
     }, [delay, contactInfo]);
 
+    useEffect(() => {
+        setBillTabOpen(allBillTabOpen);
+    }, [allBillTabOpen]);
 
-    const toggleBill = (event) => {
+
+    const toggleBill = () => {
         // Toggles the Bill Tab Box
-        setBillTabInfoElement(event.currentTarget.nextElementSibling);
+        console.log(billTabInfoRef.current);
         setBillTabOpen(!billTabOpen);
     };
 
@@ -132,7 +138,7 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
                     <FontAwesomeIcon icon={faAngleRight} className="bill-tab-arrow"/>
                 </div>
             </div>
-            <div className="bill-tab-info" style={billTabHeight}>
+            <div className="bill-tab-info" style={billTabHeight} ref={billTabInfoRef}>
                 <div className="bill-tab-divider"></div>
                 {Object.entries(personItems).map(([itemName, itemInfo], index) => {
                 const takenQuantity = itemInfo["Taken"][0];

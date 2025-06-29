@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import TooltipIcon, { billListTooltipText } from './Tooltips';
 import Bill from './Bill';
 
@@ -6,6 +8,7 @@ const BillList = ({ bills, billContacts, sampleMessage, currentStep }) => {
     const [listOfBillsPadding, setListOfBillsPadding] = useState({});
     const [lastNumber, setLastNumber] = useState("");
     const [lastMessage, setLastMessage] = useState("");
+    const [allBillTabOpen, setAllBillTabsOpen] = useState(false);
 
 
     // Adjusts List of Bills for Scrollbar
@@ -27,11 +30,24 @@ const BillList = ({ bills, billContacts, sampleMessage, currentStep }) => {
         minimumFractionDigits: 0, // Removes decimals
     });
 
+    const toggleAllBills = (event) => {
+        // Toggles All Bill Tabs
+        setAllBillTabsOpen(!allBillTabOpen);
+    };
+
     return (
         <div className="big-box box">
-            <div className={`big-box-title ${currentStep === 3 ? "current-step" : ""}`}>
-                Bill List
-                <TooltipIcon tooltipText={billListTooltipText} />
+            <div className='big-box-title-container'>
+                <div className={`big-box-title ${currentStep === 3 ? "current-step" : ""}`}>
+                    Bill List
+                    <TooltipIcon tooltipText={billListTooltipText} />
+                </div>
+                <div className="expand-contract-all-container" onClick={toggleAllBills}>
+                    <div className="expand-contract-all-text">{allBillTabOpen ? "Hide All" : "Show All"}</div>
+                    <div className={`big-box-arrow-container ${allBillTabOpen ? "open" : ""}`}>
+                        <FontAwesomeIcon icon={faAngleRight} className="big-box-arrow"/>
+                    </div>
+                </div>
             </div>
             <div className="custom-scroll-bar" id="list-of-bills" style={listOfBillsPadding}>
             {bills.length === 0 ? (
@@ -58,6 +74,7 @@ const BillList = ({ bills, billContacts, sampleMessage, currentStep }) => {
                             sampleMessage={sampleMessage}
                             lastMessageState={[lastMessage, setLastMessage]}
                             lastNumberState={[lastNumber, setLastNumber]}
+                            allBillTabOpen={allBillTabOpen}
                             delay={delay}
                         />
                     )
