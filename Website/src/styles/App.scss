@@ -8,13 +8,10 @@
 
 $scrollbar-track-BG-COLOUR: #263240;
 
-// $scrollbar-thumb-BG: linear-gradient(to bottom, #b9b900 -10%, #844200);
 $scrollbar-thumb-BG-COLOUR: #0f141a;
 $scrollbar-thumb-hover-BG-COLOUR: #0c1015;
-// $scrollbar-thumb-active-BG: linear-gradient(to bottom, #E6E600 -10%, #B95C00);
 $scrollbar-thumb-active-BG-COLOUR: #0a0d11;
 
-// $main-BG-COLOUR: #111827;
 $main-BG-COLOUR: #131920;
 
 $container-COLOUR: global-variables.$DEFAULT-TEXT-COLOUR;
@@ -23,9 +20,7 @@ $container-MARGIN: global-variables.$GAP-AROUND-CONTAINERS;
 $container-GAP: global-variables.$GAP-AROUND-CONTAINERS;
 $container-HEIGHT: calc(100% - global-variables.$GAP-AROUND-CONTAINERS * 2);
 
-// $box-BG-COLOUR: #1F2937;
 $box-BG-COLOUR: #1b232d;
-// $box-BORDER: solid #263240 1px;
 $box-BORDER: solid #303f50 1px;
 
 

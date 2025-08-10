@@ -51,7 +51,7 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
             height: "",
             maxHeight: overFullHeight + 'px'
         } );
- 
+
         // Changes Scroll Bar Padding if Scroll Bar is visible
         if ((listOfBills.scrollHeight + overFullHeight) > listOfBills.clientHeight) {
             if (listOfBills.style.paddingRight !== "10px") {
@@ -97,7 +97,6 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
 
     const toggleBill = () => {
         // Toggles the Bill Tab Box
-        console.log(billTabInfoRef.current);
         setBillTabOpen(!billTabOpen);
     };
 

@@ -5,8 +5,9 @@ import TooltipIcon, { sampleMessageTooltipText } from './Tooltips';
 const SampleMessage = ({ currentStep }) => {
     const initialMessage = `Hello [FIRSTNAME],
 
-Your bill with the Park Rangers this week is: [AMOUNT]
-Please contact us via dispatch to settle this.
+Your equipment bill with the Park Rangers this week is: [AMOUNT]
+
+Please contact a Senior Ranger to settle.
 
 Regards,
 SA Royal Park Rangers`;
