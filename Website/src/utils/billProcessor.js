@@ -1,6 +1,6 @@
 //// BILL PROCESSOR \\\\
 
-export const processBills = (logInputGenerateBtn, hunterMultiplier = true, consoleLogBills = false) => {
+export const processBills = (logInputGenerateBtn, hunterMultiplier = false, consoleLogBills = false) => {
 
     //// ERROR HANDLERS
     // Handles Button Error Showing
@@ -20,7 +20,7 @@ export const processBills = (logInputGenerateBtn, hunterMultiplier = true, conso
     // '-> ['Luke Richardson', '2000', '.308 Winchester', 20, false]
 
     // List of all ranks to remove in name
-    const ranks = ["Hunter", "Trainee Ranger", "Park Ranger", "Senior Ranger", "Internal Affairs", "Deputy Ranger", "Head Ranger"];
+    const ranks = ["Hunter", "Trainee Ranger", "Assistant Ranger", "Park Ranger", "Senior Ranger", "Internal Affairs", "Deputy Ranger", "Head Ranger"];
 
     // Empty Bill List to add formatted bills
     const billList = [];
