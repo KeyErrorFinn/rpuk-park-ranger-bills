@@ -12,19 +12,20 @@
   <a href="#"><img alt="GitHub Actions" src="https://img.shields.io/badge/github%20actions-%232671E5.svg?logo=githubactions&logoColor=white" /></a>
 </p>
 <p align="center">
-  <a href="#"><img alt="NPM" src="https://img.shields.io/badge/NPM-%23CB3837.svg?logo=npm&logoColor=white" /></a>
+  <a href="#"><img alt="PNPM" src="https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=fff" /></a>
+  <a href="#"><img alt="Vite" src="https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff" /></a>
   <a href="#"><img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?logo=react&logoColor=%2361DAFB" /></a>
+  <a href="#"><img alt="Babel" src="https://img.shields.io/badge/Babel-F9DC3E?logo=babel&logoColor=000" /></a>
   <a href="#"><img alt="SCSS" src="https://img.shields.io/badge/SASS-hotpink.svg?logo=SASS&logoColor=white" /></a>
 </p>
 <p align="center">
   <a href="#"><img alt="HTML" src="https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white" /></a>
   <a href="#"><img alt="CSS" src="https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff" /></a>
-  <a href="#"><img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000" /></a>
+  <a href="#"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" /></a>
 </p>
 <p align="center">
   <a href="#"><img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff" /></a>
 </p>
-
 
 This project is for helping the **RPUK SA Park Rangers** with their bills system to help efficiently work out the bills and save time.
 
@@ -43,29 +44,27 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
   - [OLD Website Version](#old-website-version)
     - [What it includes:](#what-it-includes-1)
 
-
 ## About the Project
 
 ### There are three sections:
 
-1) **The Website Version (React)** ([LINK](https://git.finnley.co.uk/rpuk-park-ranger-bills/))
-2) **And the EXE Version**
-3) **The Old Website Version**
+1) **The Website Version (Vite React)** ([LINK](https://git.finnley.co.uk/rpuk-park-ranger-bills/))
+2) **The EXE Version**
+3) **The Old Website Version (HTML & JS)**
 
 ### The helper works by doing this:
 
-1) A High rank uses the in-game computer to look at the bills log
+1) A High-Ranked Person (HRP) uses the in-game computer to look at the bills log
 2) They select all of the text in the bills log and either:
-    1) Puts each page into a text file and then copy the entire text file
-    2) Puts each page into the input of either section one-by-one
-3) The helper generates the total bill for each person, and can even work out what items and amounts caused the bill 
-4) The High rank then puts the generated output and pastes it into the high-rank google spreadsheet
-5) By pasted the generated output of the name and bill, the sheet also gets days active and contact number
-6) The High rank then mass-selects and copies all the Names, Bills, Days active, and Contact number, to paste into another helper input
-7) After generating with that input, the helper with provide a contact number for each person, along with a custom message to send to them that can include their name and bill
+   1) Puts each page into a text file and then copy the entire text file
+   2) Puts each page into the input of either section one-by-one
+3) The helper generates the total bill for each person, and can even work out what items and amounts caused the bill
+4) The HRP then puts the generated output and pastes it into the Ranger Google Spreadsheet
+5) By pasting the generated output of the name and bill, the sheet also gets each person's "days active" and "contact number"
+6) The HRP then mass-selects and copies all the Names, Bills, Days active, and Contact number, to paste into another helper input
+7) After generating with that input, the helper will provide a contact number for each person, along with a custom message to send to them, which includes their name and bill amount
 
-
-### Website Version (Using React)
+### Website Version (Using Vite React)
 
 The Website Version can be found [here](https://git.finnley.co.uk/rpuk-park-ranger-bills/).
 
@@ -76,9 +75,10 @@ The Website Version can be found [here](https://git.finnley.co.uk/rpuk-park-rang
     - Log Input tab: inputting the bill data and copying the output
     - Sheet Input tab: inputting the google sheet data (Name, Bill, Days active, Contact number)
   - A small box for changing the custom message that gets generated for each person (BOTTOM)
-- Middle
+- Right
   - A big box that displays each person with information such as:
-    - Whether they are a Ranger
+    - Hunting Shack & Job incomes
+    - Ranger Tag
     - Name
     - Bill amount
     - *ONCE GIVEN SHEET INPUT AND GENERATED:*
@@ -96,21 +96,21 @@ The Website Version can be found [here](https://git.finnley.co.uk/rpuk-park-rang
 
 #### TO-DO:
 
-- [x] <s>Create Program</s>
-- [x] <s>Convert to static website</s>
-- [x] <s>Add individual item bill costs in dropdown for each person</s>
-- [x] <s>Make last copied number/message stand out to remember place in list</s>
-- [x] <s>Show if person is Ranger</s>
-- [x] <s>Add multiplier to bullets for non-rangers **(CURRENTLY DEACTIVATED)**</s>
-- [x] <s>Fix info box cutting off information past 200px and all boxes open at same speed no matter the height</s>
-- [x] <s>Show total items in and total items out each item separately</s>
-- [x] <s>Show items returned in the bill log even if none were taken out</s>
-- [x] <s>Add information tooltips to each small box</s>s>
-- [x] <s>Redesign Website</s>
-- [x] <s>Copying Item Information should paste as: -5 | +3 | -2 - £10,000</s>
-- [x] <s>Add other features for Joe</s>
-- [x] <s>Convert Website to React</s>
-- [x] <s>Convert regular CSS to SCSS</s>
+- [X] <s>Create Program</s>
+- [X] <s>Convert to static website</s>
+- [X] <s>Add individual item bill costs in dropdown for each person</s>
+- [X] <s>Make last copied number/message stand out to remember place in list</s>
+- [X] <s>Show if person is Ranger</s>
+- [X] <s>Add multiplier to bullets for non-rangers **(CURRENTLY DEACTIVATED)**</s>
+- [X] <s>Fix info box cutting off information past 200px and all boxes open at same speed no matter the height</s>
+- [X] <s>Show total items in and total items out each item separately</s>
+- [X] <s>Show items returned in the bill log even if none were taken out</s>
+- [X] <s>Add information tooltips to each small box</s>s>
+- [X] <s>Redesign Website</s>
+- [X] <s>Copying Item Information should paste as: -5 | +3 | -2 - £10,000</s>
+- [X] <s>Add other features for Joe</s>
+- [X] <s>Convert Website to React</s>
+- [X] <s>Convert regular CSS to SCSS</s>
 - [ ] COMMENT CODE
 - [ ] Add Error logs
 - [ ] Add "Person not found" error to sheet input box
