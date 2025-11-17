@@ -10,4 +10,5 @@ export default defineConfig({
       },
     }),
   ],
+  base: '/rpuk-park-ranger-bills/',
 })
