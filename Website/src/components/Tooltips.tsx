@@ -1,10 +1,13 @@
-import React from 'react';
+import type { JSX } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 
 
-//// Reusable TooltipIcon component \\\\
-const TooltipIcon = ({ tooltipText, addSmallLeftClass = false }) => {
+/// Reusable TooltipIcon component \\\\
+const TooltipIcon = ({ tooltipText, addSmallLeftClass = false }: {
+    tooltipText: JSX.Element;
+    addSmallLeftClass?: boolean;
+}) => {
     return (
         <div className="tooltip-container">
             <FontAwesomeIcon icon={faCircleQuestion} className="help-tooltip" />
@@ -16,7 +19,7 @@ const TooltipIcon = ({ tooltipText, addSmallLeftClass = false }) => {
 };
 
 
-//// Tooltip texts \\\\
+/// Tooltip texts \\\\
 // Log Input
 export const logInputTooltipText = (
     <>

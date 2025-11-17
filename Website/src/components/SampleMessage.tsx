@@ -2,7 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
 import TooltipIcon, { sampleMessageTooltipText } from './Tooltips';
 
-const SampleMessage = ({ currentStep }) => {
+const SampleMessage = ({ currentStep }: {
+    currentStep: number;
+}) => {
     const initialMessage = `Hello [FIRSTNAME],
 
 Your equipment bill with the Park Rangers this week is: [AMOUNT]
@@ -12,16 +14,18 @@ Please contact a Senior Ranger to settle.
 Regards,
 SA Royal Park Rangers`;
 
-    const resetSampleMessage = (event) => {
-        const sampleMessageTextArea = document.getElementById("sample-message-text-area");
+    const resetSampleMessage = (event: React.MouseEvent<HTMLDivElement>) => {
+        const sampleMessageTextArea = document.getElementById("sample-message-text-area") as HTMLTextAreaElement;
+        if (!sampleMessageTextArea) return;
+        
         sampleMessageTextArea.value = initialMessage;
 
         const sampleMessageResetBtnIcon = event.currentTarget.querySelector("svg");
 
-        sampleMessageResetBtnIcon.classList.add("spin");
+        sampleMessageResetBtnIcon?.classList.add("spin");
 
         setTimeout(() => {
-            sampleMessageResetBtnIcon.classList.remove("spin");
+            sampleMessageResetBtnIcon?.classList.remove("spin");
         }, 500);
     };
 

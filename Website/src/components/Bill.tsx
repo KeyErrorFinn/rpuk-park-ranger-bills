@@ -1,12 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+
 import { PhoneButton, MessageButton } from './BillButtons';
 
-const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, sampleMessage, lastMessageState, lastNumberState, allBillTabOpen, delay }) => {
+import type { BillContact } from "../types/billContactTypes"
+import type { ProcessBill } from '../types/billProcessorTypes';
+
+
+const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, sampleMessage, lastMessageState, lastNumberState, allBillTabOpen, delay }: {
+    person: ProcessBill;
+    currencyFormat: Intl.NumberFormat;
+    setListOfBillsPadding: React.Dispatch<React.SetStateAction<{}>>;
+    contactInfo: BillContact | null;
+    sampleMessage: string;
+    lastMessageState: [string, React.Dispatch<React.SetStateAction<string>>];
+    lastNumberState: [string, React.Dispatch<React.SetStateAction<string>>];
+    allBillTabOpen: boolean;
+    delay: number;
+}) => {
     const [billTabOpen, setBillTabOpen] = useState(false);
     const [billTabHeight, setBillTabHeight] = useState({});
-    const billTabInfoRef = useRef(null);
+    const billTabInfoRef = useRef<HTMLDivElement>(null);
     const [showPhoneButton, setShowPhoneButton] = useState(false);
     const [showMessageButton, setShowMessageButton] = useState(false);
     const isFirstRender = useRef(true); // Ref to track initial render
@@ -15,15 +30,10 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
     const personBill = person["Bill"];
     const personRangerStatus = person["IsRanger"];
     const huntingShackStatus = personName === "Hunting Shack";
+    const jobsStatus = personName === "Jobs";
     const personItems = person["Items"];
 
-    let formattedPersonBill;
-    if (huntingShackStatus) {
-        formattedPersonBill = currencyFormat.format(personBill * -1);
-    } else {
-        formattedPersonBill = currencyFormat.format(personBill);
-    }
-
+    const formattedPersonBill = currencyFormat.format(personBill * ((huntingShackStatus || jobsStatus) ? -1 : 1));
     const personNameAndBill = `${personName} - ${formattedPersonBill}`;
 
 
@@ -38,6 +48,7 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
 
         // Gets the List of Bills
         const listOfBills = document.getElementById("list-of-bills");
+        if (!listOfBills) return;
 
         // Gets the Height variables from Bill Tab Info Scroll Height
         const billTabInfoScrollHeight = billTabInfoRef.current.scrollHeight;
@@ -71,7 +82,7 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
 
 
     useEffect(() => {
-        if (!contactInfo) return;
+        if (contactInfo === null) return;
 
         // Render PhoneButton 0.1 seconds after MessageButton
         const phoneTimeout = setTimeout(() => {
@@ -105,13 +116,15 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
         <div className={`bill-tab ${billTabOpen ? "open" : ""}`} name-and-bill={personNameAndBill}>
             <div className="bill-tab-header" onClick={toggleBill}>
                 <div className="bill-tab-person-info">
-                    { personRangerStatus && (<div className="bill-tab-ranger-tag">RANGER</div>) }
-                    { huntingShackStatus ? (
+                    { personRangerStatus && (<div className="bill-tab-tag bill-tab-ranger-tag">RANGER</div>) }
+                    { (huntingShackStatus || jobsStatus) ?
                         <>
-                            <div className="bill-tab-hunting-shack-tag">HUNTING SHACK EARNINGS</div>
+                            <div className="bill-tab-tag bill-tab-earnings-tag">{huntingShackStatus ? "HUNTING SHACK" : "JOB"} EARNINGS</div>
                             <div className="name-and-bill">{formattedPersonBill}</div>
                         </>
-                    ) : (<div className="name-and-bill">{personNameAndBill}</div>) }
+                        : 
+                        <div className="name-and-bill">{personNameAndBill}</div> 
+                    }
                 </div>
                 <div className="bill-btns">
                 { contactInfo && (
@@ -146,12 +159,7 @@ const Bill = ({ person, currencyFormat, setListOfBillsPadding, contactInfo, samp
                 const netQuantity = takenQuantity - givenQuantity;
                 const netCost = itemInfo["Taken"][1]+itemInfo["Given"][1];
 
-                let formattedNetCost;
-                if (huntingShackStatus) {
-                    formattedNetCost = currencyFormat.format(netCost * -1);
-                } else {
-                    formattedNetCost = currencyFormat.format(netCost);
-                }
+                const formattedNetCost = currencyFormat.format(netCost * ((huntingShackStatus || jobsStatus) ? -1 : 1));
 
                 const isLastItem = index === Object.entries(personItems).length - 1;
                 

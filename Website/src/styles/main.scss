@@ -47,6 +47,10 @@ $box-BORDER: solid #303f50 1px;
     font-family: "Inter var",sans-serif;
 }
 
+#root {
+    height: 100%;
+}
+
 
 .custom-scroll-bar {
     &::-webkit-scrollbar {

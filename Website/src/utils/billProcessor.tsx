@@ -1,25 +1,28 @@
-//// BILL PROCESSOR \\\\
+/// BILL PROCESSOR \\\\
+import type { SeparateBills, ProcessedBills } from "../types/billProcessorTypes"
+
+// ADD "Hunter" adding "Culling" and "Photo"
 
 export const processBills = (
-	logInputGenerateBtn,
+	logInputGenerateBtn: HTMLDivElement,
 	hunterMultiplier = false,
 	consoleLogBills = false
-) => {
-	//// ERROR HANDLERS
+): ProcessedBills => {
+	/// ERROR HANDLERS
 	// Handles Button Error Showing
 	if (logInputGenerateBtn.classList.contains("error")) {
 		return { success: false, message: "" };
 	}
 
 	// Handles no text in input text area and changes button colour temporarily
-	const logInputTextAreaText = document.querySelector(
+	const logInputTextAreaText = document.querySelector<HTMLTextAreaElement>(
 		"#log-input-tab-container .small-box-text-area"
-	).value;
+	)?.value;
 	if (logInputTextAreaText === "") {
 		return { success: false, message: "No Text Inputted".toUpperCase() };
 	}
 
-	//// CREATES CLEAN DATA FROM EACH LINE
+	/// CREATES CLEAN DATA FROM EACH LINE
 	// Hunter Luke Richardson	- 20 (£2000)	.308 Winchester	N/A	21st September 2024, 11:52:21 pm
 	// '-> ['Luke Richardson', '2000', '.308 Winchester', 20, false]
 
@@ -39,7 +42,9 @@ export const processBills = (
 	const billList = [];
 
 	// Splits all lines in Log Input Text Area
-	const lines = logInputTextAreaText.split("\n");
+	const lines = logInputTextAreaText?.split("\n");
+    if (!lines) return { success: false, message: "" };
+
 	for (const line of lines) {
 		// Skips lines with column titles
 		if ((line.includes("Item Name") && line.includes("Quantity")) || !line)
@@ -47,8 +52,8 @@ export const processBills = (
 
 		// Splits data into 5 variables and keeps the first 3 variables
 		// e.g. ['Hunter Luke Richardson', '- 20 (£2000)', '.308 Winchester']
-		const datalist = line.trim().split("\t").slice(0, 3);
-		let [name, amount, item] = datalist;
+		const datalist: (string | number | boolean)[] = line.trim().split("\t").slice(0, 3);
+		const [name, amount, item] = datalist as [string, string, string];
 
 		// Goes through each rank to remove it from name. If person is not a hunter, it will add ranger attribute
 		// e.g. "Hunter Luke Richardson" -> "Luke Richardson"
@@ -79,7 +84,7 @@ export const processBills = (
 
 		// Calculates bill log amount
 		// e.g. "- 20 (£2000)" -> 2000
-		let amountCost = amount.slice(amount.indexOf("(") + 2, -1);
+		let amountCost: (string | number) = amount.slice(amount.indexOf("(") + 2, -1);
 		// Checks whether its vehicle insurance or not to handle it differently
 		if (item.includes("Vehicle Insurance")) {
 			const insuranceCost = amount.slice(amount.indexOf(" ") + 1);
@@ -102,12 +107,14 @@ export const processBills = (
 
 		datalist[2] = item.replace("SmartPhone", "Smart Phone");
 
-		if (item.includes("Photo")) {
-			// || name.includes("Anonymous Citizen")
-			if (!name.includes("Anonymous Citizen")) {
-				datalist[2] = "Photography Job";
-			}
-			datalist[0] = "Hunting Shack";
+		if (!name.includes("Anonymous Citizen")) {
+            if (item.includes("Photo")) {
+                datalist[0] = "Jobs";
+                datalist[2] = "Photography";
+            } else if (item.includes("Culling")) {
+                datalist[0] = "Jobs";
+			    datalist[2] = "Culling";
+            }
 		} else if (name.includes("Anonymous Citizen")) {
 			datalist[0] = "Hunting Shack";
 		}
@@ -124,7 +131,7 @@ export const processBills = (
 		billList.push(datalist);
 	}
 
-	//// TOTALS UP ALL BILLS FOR EACH PERSON
+	/// TOTALS UP ALL BILLS FOR EACH PERSON
 	// e.g.
 	// { 'Luke Richardson': {
 	//         "Bill": 30500,
@@ -139,13 +146,13 @@ export const processBills = (
 	// }
 
 	// Empty Separate Bills Array to deal with totalled bills
-	const separateBills = {};
+	const separateBills: SeparateBills = {};
 
 	// Goes through each Log in the Bill List
 	billList.forEach((log) => {
 		// Splits the log into 5 variables
 		// e.g. ['Luke Richardson', '2000', '.308 Winchester', 20, false]
-		const [name, amount, item, itemCount, isRanger] = log;
+		const [name, amount, item, itemCount, isRanger] = log as [string, number, string, number, boolean];
 
 		// Creates Person Info in Separate Bills Array if there is no person in Array
 		// e.g { 'Luke Richardson': { 'Bill': 0, 'Items': {}, 'IsRanger': false } }
@@ -176,41 +183,48 @@ export const processBills = (
 		}
 	});
 
-	//// REMOVES BLANK BILLS
+	/// REMOVES BLANK BILLS
 	// Adds only people with a Bill over 0 to the Temp Separate Bills Array
-	const tempSeparateBills = {};
+	const tempSeparateBills: SeparateBills = {};
 	for (const person in separateBills) {
-		if (separateBills[person]["Bill"] > 0 || person === "Hunting Shack") {
+		if (separateBills[person]["Bill"] > 0 || person === "Hunting Shack" || person === "Jobs") {
 			// Adds person to Temp Separate Bills Array
 			tempSeparateBills[person] = separateBills[person];
 		}
 	}
 
-	console.log(tempSeparateBills);
+	// console.log(tempSeparateBills);
 
-	//// SORTS BILLS
+	/// SORTS BILLS
 	// Moves "Anonymous Citizen" to the top and sorts the rest by person name
+    const priority: Record<string, number> = {
+        "Hunting Shack": 0,
+        "Jobs": 1,
+    };
+
 	const sortedSeparateBills = Object.keys(tempSeparateBills)
-		.sort((a, b) => {
-			if (a === "Hunting Shack") return -1;
-			if (b === "Hunting Shack") return 1;
-			return a.localeCompare(b);
-		})
-		.reduce((acc, key) => {
-			acc[key] = tempSeparateBills[key];
-			return acc;
-		}, {});
+        .sort((a, b) => {
+            const pa = priority[a] ?? 999;
+            const pb = priority[b] ?? 999;
 
-	console.log(sortedSeparateBills);
+            if (pa !== pb) return pa - pb;
+            return a.localeCompare(b);
+        })
+        .reduce<SeparateBills>((acc, key) => {
+            acc[key] = tempSeparateBills[key];
+            return acc;
+        }, {} as SeparateBills);
 
-	// //// SORTS BILLS
+	// console.log(sortedSeparateBills);
+
+	// /// SORTS BILLS
 	// // Sorts the Temp Separate Bills Array by the person name and stores in Sorted Separate Bills Array
 	// const sortedSeparateBills = Object.keys(tempSeparateBills).sort().reduce((acc, key) => {
 	//     acc[key] = tempSeparateBills[key];
 	//     return acc;
 	// }, {});
 
-	//// OUTPUTS EACH PERSON'S FINAL BILL IF ENABLED
+	/// OUTPUTS EACH PERSON'S FINAL BILL IF ENABLED
 	if (consoleLogBills) {
 		for (const person in sortedSeparateBills) {
 			console.log(
@@ -227,7 +241,7 @@ export const processBills = (
 		})
 	);
 
-	//// SHOWS COPY OUTPUT BUTTON
+	/// SHOWS COPY OUTPUT BUTTON
 	// Creates output text for Google Sheet using each person's bill
 	let outputText = "";
 	for (const person in sortedSeparateBills) {

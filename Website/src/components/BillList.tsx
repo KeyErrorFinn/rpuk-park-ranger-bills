@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+
 import TooltipIcon, { billListTooltipText } from './Tooltips';
 import Bill from './Bill';
 
-const BillList = ({ bills, billContacts, sampleMessage, currentStep }) => {
+import type { ProcessBill } from "../types/billProcessorTypes"
+import type { BillContact } from "../types/billContactTypes"
+
+
+const BillList = ({ bills, billContacts, sampleMessage, currentStep }: {
+    bills: ProcessBill[];
+    billContacts: BillContact[];
+    sampleMessage: string;
+    currentStep: number;
+}) => {
     const [listOfBillsPadding, setListOfBillsPadding] = useState({});
     const [lastNumber, setLastNumber] = useState("");
     const [lastMessage, setLastMessage] = useState("");
@@ -16,6 +26,8 @@ const BillList = ({ bills, billContacts, sampleMessage, currentStep }) => {
         if (bills.length === 0) return;
 
         const listOfBills = document.getElementById("list-of-bills");
+        if (!listOfBills) return;
+
         // Changes Scroll Bar Padding if Scroll Bar is visible
         if (listOfBills.scrollHeight > listOfBills.clientHeight) {
             setListOfBillsPadding({paddingRight: "10px"})
@@ -30,11 +42,6 @@ const BillList = ({ bills, billContacts, sampleMessage, currentStep }) => {
         minimumFractionDigits: 0, // Removes decimals
     });
 
-    const toggleAllBills = (event) => {
-        // Toggles All Bill Tabs
-        setAllBillTabsOpen(!allBillTabOpen);
-    };
-
     return (
         <div className="big-box box">
             <div className='big-box-title-container'>
@@ -42,7 +49,7 @@ const BillList = ({ bills, billContacts, sampleMessage, currentStep }) => {
                     Bill List
                     <TooltipIcon tooltipText={billListTooltipText} />
                 </div>
-                <div className="expand-contract-all-container" onClick={toggleAllBills}>
+                <div className="expand-contract-all-container" onClick={() => setAllBillTabsOpen(!allBillTabOpen)}>
                     <div className="expand-contract-all-text">{allBillTabOpen ? "Hide All" : "Show All"}</div>
                     <div className={`big-box-arrow-container ${allBillTabOpen ? "open" : ""}`}>
                         <FontAwesomeIcon icon={faAngleRight} className="big-box-arrow"/>
@@ -56,12 +63,13 @@ const BillList = ({ bills, billContacts, sampleMessage, currentStep }) => {
                     <div>Generate a bill using the input forms</div>
                 </div>
             ) : (
-                bills.map((bill, index) => {
+                bills.map((bill: ProcessBill, index: number) => {
                     // Find the corresponding contact data for this bill
+                    console.log(bill)
                     const personNameAndBill = `${bill["Name"]} - ${currencyFormat.format(bill["Bill"])}`;
-                    const contactInfo = billContacts.find(
+                    const contactInfo: BillContact | null = billContacts.find(
                         (contact) => `${contact["Name"]} - ${contact["Bill"]}` === personNameAndBill
-                    );
+                    ) || null;
 
                     const delay = index * 100;
 

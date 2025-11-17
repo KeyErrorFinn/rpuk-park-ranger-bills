@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { CClean } from '../utils/cleanClassNames';
 
-export const PhoneButton = ({ number, lastNumberState }) => {
+export const PhoneButton = ({ number, lastNumberState }: {
+    number: string;
+    lastNumberState: [string, React.Dispatch<React.SetStateAction<string>>];
+}) => {
     const [lastNumber, setLastNumber] = lastNumberState;
     const [numberBtnText, setNumberBtnText] = useState(number);
     const [btnScale, setBtnScale] = useState(0.1);
@@ -11,7 +14,7 @@ export const PhoneButton = ({ number, lastNumberState }) => {
     useEffect(() => {
         // After 10ms, change the scale to 1
         const btnScaleTimeout = setTimeout(() => {
-            setBtnScale("");
+            setBtnScale(1);
         }, 10);
 
         // Cleanup function
@@ -20,7 +23,7 @@ export const PhoneButton = ({ number, lastNumberState }) => {
         };
     }, []);
 
-    const copyNumber = (event) => {
+    const copyNumber = (event: React.MouseEvent<HTMLDivElement>) => {
         // Stops tab triggering
         event.stopPropagation();
 
@@ -54,7 +57,12 @@ export const PhoneButton = ({ number, lastNumberState }) => {
 }
 
 
-export const MessageButton = ({ name, bill, sampleMessage, lastMessageState }) => {
+export const MessageButton = ({ name, bill, sampleMessage, lastMessageState }: {
+    name: string;
+    bill: string;
+    sampleMessage: string;
+    lastMessageState: [string, React.Dispatch<React.SetStateAction<string>>];
+}) => {
     const [lastMessage, setLastMessage] = lastMessageState;
     const [messageBtnText, setMessageBtnText] = useState("Message");
     const [btnScale, setBtnScale] = useState(0.1);
@@ -62,7 +70,7 @@ export const MessageButton = ({ name, bill, sampleMessage, lastMessageState }) =
     useEffect(() => {
         // After 10ms, change the scale to 1
         const btnScaleTimeout = setTimeout(() => {
-            setBtnScale("");
+            setBtnScale(1);
         }, 10);
 
         // Cleanup function
@@ -76,7 +84,7 @@ export const MessageButton = ({ name, bill, sampleMessage, lastMessageState }) =
         .replace("[FIRSTNAME]", name.split(" ")[0])
         .replace("[AMOUNT]", bill);
 
-    const copyMessage = (event) => {
+    const copyMessage = (event: React.MouseEvent<HTMLDivElement>) => {
         // Stops tab triggering
         event.stopPropagation();
 

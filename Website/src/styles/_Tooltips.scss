@@ -22,6 +22,7 @@ $tooltip-text-BOX-SHADOW: $tooltip-text-BG-COLOUR 0px 0px 3px 2px;
         cursor: pointer;
         margin-left: 2px;
         transition: opacity 0.3s, box-shadow 0.3s;
+        width: fit-content;
 
 
         /* Tooltip text */
