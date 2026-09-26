@@ -31,6 +31,12 @@ This project is for helping the **RPUK SA Park Rangers** with their bills system
 
 **RPUK** = GTA V FiveM Roleplay Server [ROLEPLAY UK](https://www.roleplay.co.uk)
 
+## Preview
+
+![RPUK Park Ranger Bills website](docs/screenshot.jpg)
+
+[Open the live website](https://git.finnley.co.uk/rpuk-park-ranger-bills/)
+
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
