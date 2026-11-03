@@ -1,5 +1,9 @@
 <h1 align="center">RPUK Park Ranger Bills Helper</h1>
 
+
+<p align="center">
+  <img src="assets/logo.svg" alt="rpuk-park-ranger-bills logo" width="480" />
+</p>
 <p align="center">
   <a href="https://github.com/KeyErrorFinn/rpuk-park-ranger-bills/commits/main"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/KeyErrorFinn/rpuk-park-ranger-bills" /></a>
   <a href="https://github.com/KeyErrorFinn/rpuk-park-ranger-bills/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/KeyErrorFinn/rpuk-park-ranger-bills" /></a>
