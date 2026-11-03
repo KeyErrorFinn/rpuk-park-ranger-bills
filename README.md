@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="assets/logo.png" alt="rpuk-park-ranger-bills logo" width="480" />
+  <img src="assets/logo.png" alt="rpuk-park-ranger-bills logo" width="180" />
 </p>
 <p align="center">
   <a href="https://github.com/KeyErrorFinn/rpuk-park-ranger-bills/commits/main"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/KeyErrorFinn/rpuk-park-ranger-bills" /></a>
